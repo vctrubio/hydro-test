@@ -1,22 +1,47 @@
-import {Suspense} from 'react';
-import {Await, NavLink} from '@remix-run/react';
+import { Suspense } from 'react';
+import { Await, NavLink } from '@remix-run/react';
+import '../css/Footer.css';
 
-/**
- * @param {FooterProps}
- */
-export function Footer({footer: footerPromise, header, publicStoreDomain}) {
+export const LinksTo = () => {
+  return (
+    <div className='links-to'>
+      <NavLink to="/">Acerca</NavLink>
+      <NavLink to="/calculadora">Calculadora</NavLink>
+      <NavLink to="/productos">Productos</NavLink>
+      <NavLink to="/contacto">Contacto</NavLink>
+    </div>
+  )
+}
+
+const FooterDetails = () => {
+  return (
+    <flex className='footer'>
+      <div className='footer-box'>
+        <LinksTo />
+      </div>
+      <div className='footer-null'>
+        <div>Términos y condiciones</div>
+        <div>Privicidad</div>
+        <div>Cookies</div>
+      </div>
+    </flex>
+  )
+}
+
+export function Footer({ footer: footerPromise, header, publicStoreDomain }) {
   return (
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
           <footer className="footer">
-            {footer?.menu && header.shop.primaryDomain?.url && (
+            {/* {footer?.menu && header.shop.primaryDomain?.url && (
               <FooterMenu
                 menu={footer.menu}
                 primaryDomainUrl={header.shop.primaryDomain.url}
                 publicStoreDomain={publicStoreDomain}
               />
-            )}
+            )} */}
+            <FooterDetails />
           </footer>
         )}
       </Await>
@@ -31,16 +56,16 @@ export function Footer({footer: footerPromise, header, publicStoreDomain}) {
  *   publicStoreDomain: string;
  * }}
  */
-function FooterMenu({menu, primaryDomainUrl, publicStoreDomain}) {
+function FooterMenu({ menu, primaryDomainUrl, publicStoreDomain }) {
   return (
     <nav className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
+      {(menu).items.map((item) => {
         if (!item.url) return null;
         // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
+            item.url.includes(publicStoreDomain) ||
+            item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
         const isExternal = !url.startsWith('/');
@@ -112,7 +137,7 @@ const FALLBACK_FOOTER_MENU = {
  *   isPending: boolean;
  * }}
  */
-function activeLinkStyle({isActive, isPending}) {
+function activeLinkStyle({ isActive, isPending }) {
   return {
     fontWeight: isActive ? 'bold' : undefined,
     color: isPending ? 'grey' : 'white',
