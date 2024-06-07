@@ -5,6 +5,7 @@ import {Image, Money} from '@shopify/hydrogen';
 import { BannerDesc, BannerPhoto } from '~/components/Banners';
 import { Calculator } from '~/components/Calculator';
 import { ContactForm } from '~/components/ContactForm';
+import Faq from '~/components/Faq';
 
 export const meta = () => {
   return [{title: 'Warme'}];
@@ -32,6 +33,7 @@ export default function Homepage() {
       <Calculator/>
       <Divider/>
       <ContactForm/>
+      <Faq/>
     </div>
   );
 }

@@ -87,25 +87,25 @@ export const Calculator = () => {
 
     const a = {
         height: 50,
-        backgroundColor: '#00AF50',
+        backgroundColor: '#3B5463',
         label: 'Warme',
     };
 
     const b = {
         height: 90,
-        backgroundColor: '#4C2250',
+        backgroundColor: '#B8ADAD',
         label: 'Tradicional',
     };
 
     const c = {
         height: 120,
-        backgroundColor: '#00AF50',
+        backgroundColor: '#3B5463',
         label: 'Warme',
     };
 
     const d = {
         height: 80,
-        backgroundColor: '#4C2250',
+        backgroundColor: '#B8ADAD',
         label: 'Tradicional',
     };
 
