@@ -3,6 +3,8 @@ import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 import { BannerDesc, BannerPhoto } from '~/components/Banners';
+import { Calculator } from '~/components/Calculator';
+import { ContactForm } from '~/components/ContactForm';
 
 export const meta = () => {
   return [{title: 'Warme'}];
@@ -13,11 +15,23 @@ export async function loader(args) {
   return null;
 }
 
+
+const Divider = () => {
+  return (
+    <div style={{height: '40vh', width: '100%', backgroundColor: '#666666'}}>
+    </div>
+  )
+}
+
+
 export default function Homepage() {
   return (
     <div style={{width: '100vw'}}>
       <BannerPhoto/>
       <BannerDesc/>
+      <Calculator/>
+      <Divider/>
+      <ContactForm/>
     </div>
   );
 }
