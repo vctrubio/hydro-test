@@ -9,7 +9,7 @@ import {useAside} from '~/components/Aside';
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
-  console.log('menu: ', menu);
+  
   return (
     <header className="header">
       <HeaderMenu
@@ -45,9 +45,8 @@ export function HeaderMenu({
       window.location.href = event.currentTarget.href;
     }
   }
-
   return (
-    <nav className={className} role="navigation">
+    <div className={className} role="navigation">
       {viewport === 'mobile' && (
         <NavLink
           end
@@ -61,8 +60,7 @@ export function HeaderMenu({
       )}
       {MY_MENU.items.map((item) => {
         if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
+        
         const url =
           item.url.includes('myshopify.com') ||
           item.url.includes(publicStoreDomain) ||
@@ -83,7 +81,7 @@ export function HeaderMenu({
           </NavLink>
         );
       })}
-    </nav>
+    </div>
   );
 }
 
