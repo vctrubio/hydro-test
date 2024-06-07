@@ -3,23 +3,22 @@ import {Await, NavLink} from '@remix-run/react';
 import {useAnalytics} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 
+
 /**
  * @param {HeaderProps}
  */
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
+  console.log('menu: ', menu);
   return (
     <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
       <HeaderMenu
         menu={menu}
         viewport="desktop"
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
       />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      {/* <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} /> */}
     </header>
   );
 }
@@ -60,7 +59,7 @@ export function HeaderMenu({
           Home
         </NavLink>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+      {MY_MENU.items.map((item) => {
         if (!item.url) return null;
 
         // if the url is internal, we strip the domain
@@ -171,43 +170,43 @@ function CartToggle({cart}) {
   );
 }
 
-const FALLBACK_HEADER_MENU = {
-  id: 'gid://shopify/Menu/199655587896',
+const MY_MENU = {
+  id: 'gid://shopify/Menu/199655587897',
   items: [
     {
-      id: 'gid://shopify/MenuItem/461609500728',
+      id: 'gid://shopify/MenuItem/461609500729',
       resourceId: null,
       tags: [],
-      title: 'Collections',
+      title: 'Acerca',
       type: 'HTTP',
-      url: '/collections',
+      url: '/',
       items: [],
     },
     {
-      id: 'gid://shopify/MenuItem/461609533496',
+      id: 'gid://shopify/MenuItem/461609533497',
       resourceId: null,
       tags: [],
-      title: 'Blog',
+      title: 'Calculadora',
       type: 'HTTP',
-      url: '/blogs/journal',
+      url: '/calculadora',
       items: [],
     },
     {
-      id: 'gid://shopify/MenuItem/461609566264',
+      id: 'gid://shopify/MenuItem/461609566265',
       resourceId: null,
       tags: [],
-      title: 'Policies',
+      title: 'Productos',
       type: 'HTTP',
-      url: '/policies',
+      url: '/productos',
       items: [],
     },
     {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
+      id: 'gid://shopify/MenuItem/461609599033',
+      resourceId: null,
       tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
+      title: 'Contacto',
+      type: 'HTTP',
+      url: '/contacto',
       items: [],
     },
   ],

@@ -8,6 +8,7 @@ import {
   PredictiveSearchForm,
   PredictiveSearchResults,
 } from '~/components/Search';
+import { TopNavBar } from './Navbars';
 
 /**
  * @param {PageLayoutProps}
@@ -25,6 +26,7 @@ export function PageLayout({
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
+      <TopNavBar />
       {header && (
         <Header
           header={header}
