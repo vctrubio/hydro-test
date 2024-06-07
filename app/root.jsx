@@ -1,5 +1,5 @@
-import {useNonce, getShopAnalytics, Analytics} from '@shopify/hydrogen';
-import {defer} from '@shopify/remix-oxygen';
+import { useNonce, getShopAnalytics, Analytics } from '@shopify/hydrogen';
+import { defer } from '@shopify/remix-oxygen';
 import {
   Links,
   Meta,
@@ -13,14 +13,14 @@ import {
 import favicon from '~/assets/favicon.svg';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
-import {PageLayout} from '~/components/PageLayout';
-import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
+import { PageLayout } from '~/components/PageLayout';
+import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}
  */
-export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
+export const shouldRevalidate = ({ formMethod, currentUrl, nextUrl }) => {
   // revalidate when a mutation is performed e.g add to cart, login...
   if (formMethod && formMethod !== 'GET') {
     return true;
@@ -36,8 +36,8 @@ export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
 
 export function links() {
   return [
-    {rel: 'stylesheet', href: resetStyles},
-    {rel: 'stylesheet', href: appStyles},
+    { rel: 'stylesheet', href: resetStyles },
+    { rel: 'stylesheet', href: appStyles },
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -46,7 +46,7 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    { rel: 'icon', type: 'image/svg+xml', href: favicon },
   ];
 }
 
@@ -60,7 +60,7 @@ export async function loader(args) {
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  const {storefront, env} = args.context;
+  const { storefront, env } = args.context;
 
   return defer(
     {
@@ -89,8 +89,8 @@ export async function loader(args) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  * @param {LoaderFunctionArgs}
  */
-async function loadCriticalData({context}) {
-  const {storefront} = context;
+async function loadCriticalData({ context }) {
+  const { storefront } = context;
 
   const [header] = await Promise.all([
     storefront.query(HEADER_QUERY, {
@@ -113,8 +113,8 @@ async function loadCriticalData({context}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {LoaderFunctionArgs}
  */
-function loadDeferredData({context}) {
-  const {storefront, customerAccount, cart} = context;
+function loadDeferredData({ context }) {
+  const { storefront, customerAccount, cart } = context;
 
   // defer the footer query (below the fold)
   const footer = storefront
@@ -139,7 +139,7 @@ function loadDeferredData({context}) {
 /**
  * @param {{children?: React.ReactNode}}
  */
-function Layout({children}) {
+function Layout({ children }) {
   const nonce = useNonce();
   /** @type {RootLoader} */
   const data = useRouteLoaderData('root');
@@ -153,17 +153,7 @@ function Layout({children}) {
         <Links />
       </head>
       <body>
-        {data ? (
-          <Analytics.Provider
-            cart={data.cart}
-            shop={data.shop}
-            consent={data.consent}
-          >
-            <PageLayout {...data}>{children}</PageLayout>
-          </Analytics.Provider>
-        ) : (
-          children
-        )}
+        <PageLayout {...data}>{children}</PageLayout>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
       </body>
