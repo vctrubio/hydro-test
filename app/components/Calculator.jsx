@@ -7,9 +7,9 @@ const PuntoDeAhorro = () => {
         <div style={{ maxWidth: '1000px', alignItems: 'center', marginTop: '5em' }}>
             <flex className='punto-ahorro'>
                 <div>
-                    <h2>El punto de amortización</h2>
-                    <div>
-                        El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento
+                    <h1 >El punto de amortización</h1>
+                    <div style={{ lineHeight: '1.8rem' }}>
+                        El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento.
                     </div>
                 </div>
                 <div className='punto-ahorro-graph'>
