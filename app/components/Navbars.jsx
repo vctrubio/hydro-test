@@ -3,15 +3,15 @@ import '../css/TopNavBar.css'
 export const TopNavBar = () => {
   return (
     <div className='top-nav-bar'>
-      <div>
+      {/* <div>
         bateria regargable
-      </div>
+      </div> */}
       <div>
         libre de emision
       </div>
-      <div>
+      {/* <div>
         envios gratis
-      </div>
+      </div> */}
     </div>
   )
 }

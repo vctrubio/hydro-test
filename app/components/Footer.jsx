@@ -20,9 +20,17 @@ const FooterDetails = () => {
         <LinksTo />
       </div>
       <div className='footer-null'>
+        <h1>Warme</h1>
         <div>Términos y condiciones</div>
         <div>Privicidad</div>
-        <div>Cookies</div>
+        {/* <div className='d-flex justify-content-between'>
+          <svg className='bi bi-instagram' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+          </svg>
+          <svg className='bi bi-facebook' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+          </svg>
+          <svg className='bi bi-twitter' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+          </svg>
+        </div> */}
       </div>
     </flex>
   )
@@ -32,18 +40,7 @@ export function Footer({ footer: footerPromise, header, publicStoreDomain }) {
   return (
     <Suspense>
       <Await resolve={footerPromise}>
-        {(footer) => (
-          <div className="">
-            {/* {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )} */}
-            <FooterDetails />
-          </div>
-        )}
+        <FooterDetails />
       </Await>
     </Suspense>
   );

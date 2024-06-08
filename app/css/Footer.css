@@ -6,7 +6,8 @@
     background-color: var(--color-primary);
     opacity: 0.8;
     margin-top: 10em;
-
+    margin-bottom: 0;
+    padding-bottom: 4em;
     .footer-menu {
         align-items: center;
         display: flex;
@@ -16,6 +17,9 @@
 
     .footer-menu a {
         color: var(--color-light);
+    }
+    :hover {
+        opacity: 1;
     }
 }
 
@@ -28,6 +32,7 @@
         font-size: 2em;
         font-weight: bold;
         cursor: pointer;
+        text-align: center;
     }
 }
 
@@ -49,5 +54,9 @@
     .footer-null {
         flex-direction: row;
         gap: 1.4em;
+    }
+
+    .footer-null>*:not(:first-child) {
+        display: none;
     }
 }
