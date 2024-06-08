@@ -1,11 +1,11 @@
 .footer {
-    width: 100%;
+    width: 100vw;
     justify-content: space-evenly;
     align-items: center;
     height: 25vh;
     background-color: var(--color-primary);
     opacity: 0.8;
-    margin-bottom: 0;
+    margin-top: 10em;
 
     .footer-menu {
         align-items: center;

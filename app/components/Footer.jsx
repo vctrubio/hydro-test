@@ -33,7 +33,7 @@ export function Footer({ footer: footerPromise, header, publicStoreDomain }) {
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="footer">
+          <div className="">
             {/* {footer?.menu && header.shop.primaryDomain?.url && (
               <FooterMenu
                 menu={footer.menu}
@@ -42,7 +42,7 @@ export function Footer({ footer: footerPromise, header, publicStoreDomain }) {
               />
             )} */}
             <FooterDetails />
-          </footer>
+          </div>
         )}
       </Await>
     </Suspense>
