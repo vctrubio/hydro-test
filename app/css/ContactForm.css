@@ -11,8 +11,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     max-width: 400px;
+
+    h2 {
+        align-self: flex-start;
+        padding-left: .8em;
+        font-size: 2em;
+    }
+    button {
+        width: 90%;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #F9A988;
+        border: none !important;
+    }
+    button:hover {
+        color: white;
+    }
 }
 
 .contact-form-inputs{

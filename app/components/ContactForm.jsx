@@ -4,7 +4,7 @@ import '../css/ContactForm.css'
 export const ContactForm = () => {
     return (
         <flex className='contact-container'>
-            <div className='d-flex 'style={{width: '400px', height: '550px', backgroundColor: 'grey', borderRadius: '5px'}}>
+            <div className='d-flex ' style={{ width: '400px', height: '550px', backgroundColor: 'grey', borderRadius: '5px' }}>
             </div>
             <div className='contact-form'>
                 <h2>Contacto</h2>
@@ -18,7 +18,7 @@ export const ContactForm = () => {
                     <input type="email" placeholder="Email" />
                     <textarea placeholder="Mensaje"></textarea>
                 </div>
-                <button style={{ width: '150px', borderRadius: '5px' }}>Enviar</button>
+                <button>Enviar</button>
             </div>
         </flex>
     )
