@@ -4,17 +4,31 @@ import '../css/Calculator.css'
 
 const PuntoDeAhorro = () => {
     return (
-        <flex style={{marginTop: '4em', gap: '4em'}}>
-            <div>
-                Label left
-            </div>
-            <div style={{ width: '350px' }}>
-                <h2>Punto de amortización</h2>
+        <div style={{ maxWidth: '1000px', alignItems: 'center', marginTop: '5em' }}>
+            <flex className='punto-ahorro'>
                 <div>
-                    El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento
+                    <h2>El punto de amortización</h2>
+                    <div>
+                        El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento
+                    </div>
+                </div>
+                <div className='punto-ahorro-graph'>
+                </div>
+            </flex>
+
+            <div className='punto-g'>
+                <div className='p-4 text-center'>
+                    <h2>¿Te gustaría saber exactamente cuánto podrías ahorrar con Warme?</h2>
+                    <p>Déjanos tu mail y te haremos un estudio exhaustivo personalizado</p>
+                    <div className='d-flex flex-row justify-content-center mt-1' style={{ gap: '1em' }}>
+                        <input type='text' placeholder='Tu email' />
+                        <button>Pedir estudio</button>
+                    </div>
+                </div>
+                <div className='punto-g-banner'>
                 </div>
             </div>
-        </flex>
+        </div>
     )
 }
 const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {

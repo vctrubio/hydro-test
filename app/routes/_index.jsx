@@ -16,22 +16,12 @@ export async function loader(args) {
   return null;
 }
 
-
-const Divider = () => {
-  return (
-    <div style={{height: '40vh', width: '100%', backgroundColor: '#666666'}}>
-    </div>
-  )
-}
-
-
 export default function Homepage() {
   return (
     <div style={{width: '100vw'}}>
       <BannerPhoto/>
       <BannerDesc/>
       <Calculator/>
-      <Divider/>
       <ContactForm/>
       <Faq/>
     </div>
