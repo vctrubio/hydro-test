@@ -3,6 +3,7 @@
     margin-bottom: 10em;
     gap: 4em;
     justify-content: center;
+    align-items: center;
 }
 
 .contact-form{
