@@ -1,6 +1,9 @@
 import React from 'react';
 import '../css/Calculator.css'
 
+// ALL GOOD, just need styling for mobile
+// TODOS....
+//
 
 const PuntoDeAhorro = () => {
     return (
@@ -57,11 +60,11 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
 const BarContainer = ({ title, a, b, footer }) => {
     return (
         <div className='bar-container'>
-            <div className='bar-title'>{title}</div>
+            <div className='bar-title' style={{ fontWeight: 'bold' }}>{title}</div>
             <div className='bar-2chart'>
                 <div className='d-flex flex-column align-end'>
                     <div className='bar-outline' style={{
-                        width: '100px', /* Default size */
+                        width: '165px', /* Default size */
                         height: `${a.height}px`, /* Set height based on value */
                         backgroundColor: a.backgroundColor, /* Green color */
                         paddingTop: '5px'
@@ -70,7 +73,7 @@ const BarContainer = ({ title, a, b, footer }) => {
                 </div>
                 <div>
                     <div className='bar-outline' style={{
-                        width: '100px', /* Default size */
+                        width: '165px', /* Default size */
                         height: `${b.height}px`, /* Set height based on value */
                         backgroundColor: b.backgroundColor, /* Green color */
                         paddingTop: '5px'
@@ -126,31 +129,33 @@ export const Calculator = () => {
     return (
         <div className='calculator'>
             <h1 style={{ marginBottom: '2em' }}>Calcula tu ahorro cambiándote a Warme</h1>
-            <flex>
-                <div className='calculator-qs'>
-                    {questions.map((question, index) => (
-                        <CalculatorQuestion
-                            key={index}
-                            question={question.text}
-                            min={question.min}
-                            max={question.max}
-                            value={question.value}
-                            desc={question.desc}
-                            setValue={newValue => handleValueChange(index, newValue)}
-                        />
-                    ))}
+            <div>
+
+                <flex>
+                    <div className='calculator-qs'>
+                        {questions.map((question, index) => (
+                            <CalculatorQuestion
+                                key={index}
+                                question={question.text}
+                                min={question.min}
+                                max={question.max}
+                                value={question.value}
+                                desc={question.desc}
+                                setValue={newValue => handleValueChange(index, newValue)}
+                            />
+                        ))}
+                    </div>
+                </flex>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', paddingLeft: '4em' }}>
+                    *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
+                    quemadores de gas de 12 kWh y un precio de la <br />energía de 3€ por kWh.
                 </div>
-            </flex>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', width: '100%', paddingLeft: '4em' }}>
-                *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
-                quemadores de gas de 12 kWh y un precio de la energía de 3€ por kWh.</div>
+            </div>
+            <div className='bar-container-head'>
+                <BarContainer title='COMPARATIVA - PRECIO' a={b} b={a} footer={'- 58300 Kg/CO2 e (1año)'} />
+                <BarContainer title='COMPARATIVA - EMISSIONES' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
+            </div>
+            <PuntoDeAhorro />
         </div>
     )
 }
-
-{/* <div style={{ display: 'flex', flexDirection: 'column', gap: 40, margin: '0 4em 0 4em' }}>
-        <BarContainer title='COMPARATIVA - PRECIO' a={b} b={a} footer={'+21500€ ahorrados (1año)'} />
-        <BarContainer title='COMPARATIVA - EMISSIONES' a={d} b={c} footer={'+20€ ahorrados (1año)'} />
-        </div> */}
-
-{/* <PuntoDeAhorro /> */ }
