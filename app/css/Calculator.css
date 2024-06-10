@@ -13,33 +13,46 @@
 }
 
 .calculator-question-units {
-    width: 500px;
     display: flex;
     flex-direction: row;
     align-items: baseline;
     justify-content: flex-start;
-    height: 70px;
+    height: 100px;
 
     >* {
         align-self: center;
     }
 }
 
+.calculator-question {
+    padding-left: 4em;
+}
+
+.calculator-qs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    width: 80vw;
+    align-items: center;
+}
+
 /* // */
-.punto-ahorro{
+.punto-ahorro {
     gap: 4em;
     background-color: rgb(146, 178, 90);
     border-radius: 2px;
     margin: 4em 0;
     padding: 2em;
     min-height: 420px;
-    >*{
+
+    >* {
         padding: 0 1em;
         width: 50%;
     }
 }
 
-.punto-g{
+.punto-g {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -50,44 +63,21 @@
     justify-content: center;
     gap: 2em;
     margin-top: 8em;
-    >*{
+
+    >* {
         width: 50%;
     }
 }
 
-.punto-ahorro-graph{
+.punto-ahorro-graph {
     width: 85%;
     border: 1px solid rgb(106, 102, 102);
 }
 
-.punto-g-banner{
+.punto-g-banner {
     width: 50%;
     background-color: grey;
     border-radius: 5px;
-}
-
-@media (max-width: 1000px) {
-    .punto-g{
-        flex-direction: column;
-    }
-
-    .punto-ahorro>* {
-        width: 100%;
-        padding: 0 1em;
-    }
-    .punto-ahorro-graph {
-        width: 100%;
-    }
-    .punto-g{
-        width: 100%;
-        >*{
-            width: 100%;
-        }
-    }
-
-    .punto-g-banner{
-        height: 300px;
-    }
 }
 
 /* // */
@@ -104,7 +94,7 @@
 }
 
 .slider {
-    width: 340px;
+    width: 60%;
     margin-right: 2em;
 }
 
@@ -117,6 +107,7 @@
     height: 180px;
     width: 250px;
     text-align: center;
+
     .bar-title {
         font-size: 18px;
         margin-bottom: 1em;
@@ -140,4 +131,38 @@
             border-radius: 6px;
         }
     }
+}
+
+
+@media (max-width: 1000px) {
+    .punto-g {
+        flex-direction: column;
+    }
+
+    .punto-ahorro>* {
+        width: 100%;
+        padding: 0 1em;
+    }
+
+    .punto-ahorro-graph {
+        width: 100%;
+    }
+
+    .punto-g {
+        width: 100%;
+
+        >* {
+            width: 100%;
+        }
+    }
+
+    .punto-g-banner {
+        height: 300px;
+    }
+
+    .calculator-qs {
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        grid-template-rows: 1fr;
+    }
+
 }

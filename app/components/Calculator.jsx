@@ -38,7 +38,7 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
 
     return (
         <div className='calculator-question'>
-            <span style={{ fontSize: '1.4em', width: '100%' }}>¿{question}?</span>
+            <span style={{ fontSize: '1.4em', width: '100%', marginBottom: '1em' }}>¿{question}?</span>
             <div className='calculator-question-units'>
                 <input
                     type="range"
@@ -139,15 +139,18 @@ export const Calculator = () => {
                             setValue={newValue => handleValueChange(index, newValue)}
                         />
                     ))}
-                    <p style={{ textAlign: 'left' }}>*Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
-                        quemadores de gas de 12 kWh y un precio de la energía de 3€ por kWh.</p>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 40, margin: '0 4em 0 4em' }}>
-                    <BarContainer title='COMPARATIVA - PRECIO' a={b} b={a} footer={'+21500€ ahorrados (1año)'} />
-                    <BarContainer title='COMPARATIVA - EMISSIONES' a={d} b={c} footer={'+20€ ahorrados (1año)'} />
                 </div>
             </flex>
-            <PuntoDeAhorro />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', width: '100%', paddingLeft: '4em' }}>
+                *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
+                quemadores de gas de 12 kWh y un precio de la energía de 3€ por kWh.</div>
         </div>
     )
 }
+
+{/* <div style={{ display: 'flex', flexDirection: 'column', gap: 40, margin: '0 4em 0 4em' }}>
+        <BarContainer title='COMPARATIVA - PRECIO' a={b} b={a} footer={'+21500€ ahorrados (1año)'} />
+        <BarContainer title='COMPARATIVA - EMISSIONES' a={d} b={c} footer={'+20€ ahorrados (1año)'} />
+        </div> */}
+
+{/* <PuntoDeAhorro /> */ }
