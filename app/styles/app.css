@@ -150,7 +150,9 @@ aside li {
   align-items: center;
   background: #fff;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 
   height: var(--header-height);
   padding: 0 1rem;
