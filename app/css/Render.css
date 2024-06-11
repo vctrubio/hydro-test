@@ -32,20 +32,18 @@
 }
 
 .render-hover {
-    border: 1px solid black;
-    padding: .2em;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 100%;
+    padding: .2em;
+    margin: 2em;
+    height: 82px;
+    width: 82px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.render-hover:hover {
-    background-color: lightgray;
-}
-
-/* // */
 .render-bar{
     display: flex;
     flex-direction: column;

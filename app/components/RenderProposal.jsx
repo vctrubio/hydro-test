@@ -17,23 +17,33 @@ const RenderMenu = ({ data, setUiPillo }) => {
         setUiPillo({ [key]: value });
     }
 
+    // return (
+    //     <div className='d-flex flex-column'>
+    //         {Object.entries(data).map(([key, value]) => {
+    //             return (
+    //                 <div className='render-row' key={key}>
+    //                     {key}
+    //                     {Object.entries(value).map(([subKey, subValue]) => {
+    //                         return (
+    //                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey} onClick={() => handleClick(key, subValue)}>
+    //                                 {JSON.stringify(subValue)}
+    //                             </div>
+    //                         )
+    //                     })}
+    //                 </div>
+    //             )
+    //         })}
+    //     </div>
+    // )
+    
     return (
-        <div className='d-flex flex-column'>
-            {Object.entries(data).map(([key, value]) => {
-                return (
-                    <div className='render-row' key={key}>
-                        {key}
-                        {Object.entries(value).map(([subKey, subValue]) => {
-                            return (
-                                <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey} onClick={() => handleClick(key, subValue)}>
-                                    {JSON.stringify(subValue)}
-                                </div>
-                            )
-                        })}
-                    </div>
-                )
-            })}
-        </div>
+        <>
+            <div className='d-flex flex-column'>
+                <div>select shape</div>
+                <div>select tela</div>
+                <div>select color</div>
+                </div>
+        </>
     )
 }
 
@@ -62,11 +72,27 @@ const RenderWrapper = ({ data }) => {
     )
 }
 
-const Fabric = () => {
+const Fabric = ({ data }) => {
+
     return (
         <div>
-            <h1>Fabric Component</h1>
-            <p>This is the Fabric component.</p>
+            <h1 style={{textAlign: 'center'}}>Fabric Component</h1>
+            <div className='d-flex flex-column'>
+                {Object.entries(data).map(([key, value]) => {
+                    return (
+                        <div className='render-row' key={key}>
+                            {key}
+                            {Object.entries(value).map(([subKey, subValue]) => {
+                                return (
+                                    <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
+                                        {/* {JSON.stringify(subValue)} */}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     );
 }
@@ -89,7 +115,7 @@ const Specifications = () => {
     );
 }
 
-const RenderBar = () => {
+const RenderBar = ({ data }) => {
     const TitleEnum = Object.freeze({
         A: 'Fabric',
         B: 'How does it Work?',
@@ -97,7 +123,7 @@ const RenderBar = () => {
     });
 
     const componentMap = {
-        [TitleEnum.A]: <Fabric />,
+        [TitleEnum.A]: <Fabric data={data} />,
         [TitleEnum.B]: <HowDoesItWork />,
         [TitleEnum.C]: <Specifications />
     };
@@ -152,7 +178,7 @@ export const RenderProposal = () => {
     return (
         <>
             <RenderWrapper data={pillowDataConfig} />;
-            <RenderBar />
+            <RenderBar data={pillowDataConfig} />
         </>
     )
 }
