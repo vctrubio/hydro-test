@@ -5,10 +5,14 @@
     height: 92vh;
     object-fit: cover;
     object-position: center;
-    background-color: rgb(99, 96, 90);
+
     text-align: center;
     align-content: center;
     align-items: center;
+    
+    /* background-image: url('../assets/backgroundBanner/A.jpg'); */
+    background-size: cover;
+    background-position: center;
 }
 
 .banner-desc {

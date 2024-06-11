@@ -1,9 +1,38 @@
+import { useEffect, useState } from 'react';
 import logo from '../assets/favicon.svg';
 import '../css/Banner.css'
 
 export const BannerPhoto = () => {
+    const [backgroundImage, setBackgroundImage] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const hour = new Date().getHours();
+
+    useEffect(() => {
+        let imageSrc;
+
+        if (hour >= 6 && hour < 12) {
+            imageSrc = "/backgroundBanner/A.jpg";
+        } else if (hour >= 12 && hour < 18) {
+            imageSrc = "/backgroundBanner/B.jpg";
+        } else {
+            imageSrc = "/backgroundBanner/C.jpg";
+        }
+
+        setBackgroundImage(imageSrc);
+        setLoading(false);
+    }, [hour]);
+
+    if (loading) {
+        return <div>Loading...</div>; // or return null, or a loading spinner, etc.
+    }
+    
+    if (!backgroundImage) {
+        throw new Error("Background image not found");
+    }
+
     return (
-        <div className='banner-photo'>
+        <div className='banner-photo' style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h1>¿Eres Friolero?</h1>
             <h1>Descrubre Warme!</h1>
         </div>
@@ -25,7 +54,7 @@ export const BannerDesc = () => {
             </flex>
             <div className='banner-cartoon'>
                 <div className='margin-up-down'>
-                    <div className="icon-text" style={{marginRight: '25px'}}>
+                    <div className="icon-text" style={{ marginRight: '25px' }}>
                         <img src={logo} alt="Icon" />
                         Calor bajo demanda
                     </div>
