@@ -188,9 +188,9 @@ const MY_MENU = {
       id: 'gid://shopify/MenuItem/461609500729',
       resourceId: null,
       tags: [],
-      title: 'Acerca',
+      title: 'Render',
       type: 'HTTP',
-      url: '/',
+      url: '/render',
       items: [],
     },
     {
