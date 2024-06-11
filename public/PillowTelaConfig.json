@@ -1,0 +1,9 @@
+{
+    "Hopsak": ["white1", "white2", "white3", "red1", "green1", "green2"],
+    "Base DSW, DAW": ["white1", "white7", "white8", "green1", "green2"],
+    "Base DSR, DAR": ["white1", "white7", "white8", "white4", "green1", "green2"],
+    "Sofi": ["white1", "white3", "white7", "white6", "white4"],
+    "DEFAULT": {
+        "Hopsak": "white1"
+    }
+}

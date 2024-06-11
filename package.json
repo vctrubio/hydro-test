@@ -13,6 +13,8 @@
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
+    "@react-three/drei": "^9.106.0",
+    "@react-three/fiber": "^8.16.8",
     "@remix-run/react": "^2.9.2",
     "@remix-run/server-runtime": "^2.9.2",
     "@shopify/cli": "3.60.0",
@@ -24,7 +26,8 @@
     "graphql-tag": "^2.12.6",
     "isbot": "^3.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "three": "^0.165.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
