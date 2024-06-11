@@ -25,7 +25,7 @@ const RenderMenu = ({ data, setUiPillo }) => {
                         {key}
                         {Object.entries(value).map(([subKey, subValue]) => {
                             return (
-                                <div className='render-hover' key={subKey} onClick={() => handleClick(key, subValue)}>
+                                <div className='render-hover' style={{backgroundImage: `url(/telas/${subValue}.jpg)`}} key={subKey} onClick={() => handleClick(key, subValue)}>
                                     {JSON.stringify(subValue)}
                                 </div>
                             )
@@ -45,7 +45,7 @@ const RenderWrapper = ({ data }) => {
     return (
         <div className='render-container'>
             <div>Tela : {Object.keys(uiPillo)[0]} <br /> Color: {Object.values(uiPillo)[0]}</div>
-            <RenderMenu data={data} setUiPillo={setUiPillo} />
+            <RenderMenu data={data} setUiPillo={setUiPillo}/>
         </div>
     )
 }

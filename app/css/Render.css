@@ -21,7 +21,6 @@
     }
 }
 
-
 .render-row {
     display: flex;
     flex-direction: row;
@@ -30,15 +29,15 @@
     margin: 1em 0em;
     flex: 2;
     align-items: center;
-
-
 }
 
 .render-hover {
     border: 1px solid black;
     padding: .2em;
     cursor: pointer;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     height: 100%;
 }
 
