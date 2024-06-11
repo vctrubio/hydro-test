@@ -25,7 +25,7 @@ const RenderMenu = ({ data, setUiPillo }) => {
                         {key}
                         {Object.entries(value).map(([subKey, subValue]) => {
                             return (
-                                <div className='render-hover' style={{backgroundImage: `url(/telas/${subValue}.jpg)`}} key={subKey} onClick={() => handleClick(key, subValue)}>
+                                <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey} onClick={() => handleClick(key, subValue)}>
                                     {JSON.stringify(subValue)}
                                 </div>
                             )
@@ -37,15 +37,27 @@ const RenderMenu = ({ data, setUiPillo }) => {
     )
 }
 
-
 const RenderWrapper = ({ data }) => {
     const [uiPillo, setUiPillo] = useState(data.DEFAULT);
-    delete data.DEFAULT; //  to pass to RenderMenu we don't want this option
+    
+    const sortDataValues = (data) => {
+        delete data.DEFAULT; //  to pass to RenderMenu we don't want this option
+        let sortedData = {};
+        Object.keys(data).forEach(key => {
+            if (Array.isArray(data[key])) {
+                // sortedData[key] = [...data[key]].sort(); // ASC
+                sortedData[key] = [...data[key]].sort((a, b) => b - a); //DESC
+            } else {
+                sortedData[key] = data[key];
+            }
+        });
+        return sortedData;
+    }
 
     return (
         <div className='render-container'>
             <div>Tela : {Object.keys(uiPillo)[0]} <br /> Color: {Object.values(uiPillo)[0]}</div>
-            <RenderMenu data={data} setUiPillo={setUiPillo}/>
+            <RenderMenu data={sortDataValues(data)} setUiPillo={setUiPillo} />
         </div>
     )
 }
