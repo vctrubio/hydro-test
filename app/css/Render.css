@@ -44,3 +44,18 @@
 .render-hover:hover {
     background-color: lightgray;
 }
+
+/* // */
+.render-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    
+    >*{
+        border: 1px solid black;
+    }
+}

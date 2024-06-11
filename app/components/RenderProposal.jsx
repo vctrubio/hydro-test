@@ -50,6 +50,24 @@ const RenderWrapper = ({ data }) => {
     )
 }
 
+
+const RenderBar = () => {
+    const TitleEnum = Object.freeze({
+        A: 'Fabric',
+        B: 'How does it Work?',
+        C: 'Specifications'
+    });
+
+    const [title, setTile] = useState(TitleEnum.A);
+
+    return (
+        <div className='render-bar'>
+            <div>title</div>
+            <div>component</div>
+        </div>
+    )
+}
+
 export const RenderProposal = () => {
     const [pillowDataConfig, setPillowDataConfig] = useState(null);
 
@@ -65,5 +83,10 @@ export const RenderProposal = () => {
         return <div>Loading... ... ...</div>;
     }
 
-    return <RenderWrapper data={pillowDataConfig} />;
+    return (
+        <>
+            <RenderWrapper data={pillowDataConfig} />;
+            <RenderBar/>
+        </>
+    ) 
 }
