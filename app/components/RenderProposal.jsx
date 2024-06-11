@@ -11,39 +11,76 @@ async function fetchJsonFile() {
     }
 }
 
-const RenderMenu = ({ data, setUiPillo }) => {
+const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
+    const [selectedTela, setSelectedTela] = useState(Object.keys(data)[0]);
+    const [selectedColor, setSelectedColor] = useState(Object.values(data)[0][0]); // Initialize with the first color of the first tela
+    const [selectedType, setSelectedType] = useState('single'); // Initialize with 'single'
+    const [telaDropdownVisible, setTelaDropdownVisible] = useState(false);
+    const [colorDropdownVisible, setColorDropdownVisible] = useState(false);
+    const [typeDropdownVisible, setTypeDropdownVisible] = useState(false);
 
-    const handleClick = (key, value) => {
-        setUiPillo({ [key]: value });
+    const handleColorClick = (key, value) => {
+        setUiPillo(prevState => ({ ...prevState, [key]: value }));
+        setSelectedColor(value);
+        setColorDropdownVisible(false);
     }
 
-    // return (
-    //     <div className='d-flex flex-column'>
-    //         {Object.entries(data).map(([key, value]) => {
-    //             return (
-    //                 <div className='render-row' key={key}>
-    //                     {key}
-    //                     {Object.entries(value).map(([subKey, subValue]) => {
-    //                         return (
-    //                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey} onClick={() => handleClick(key, subValue)}>
-    //                                 {JSON.stringify(subValue)}
-    //                             </div>
-    //                         )
-    //                     })}
-    //                 </div>
-    //             )
-    //         })}
-    //     </div>
-    // )
-    
+    const handleTelaClick = (key) => {
+        setSelectedTela(key);
+        setTelaDropdownVisible(false);
+    }
+
+    const handleTypeClick = (type) => {
+        setSelectedType(type);
+        setUiPillo(prevState => ({ ...prevState, type }));
+        setTypeDropdownVisible(false);
+    }
+
     return (
-        <>
-            <div className='d-flex flex-column'>
-                <div>select shape</div>
-                <div>select tela</div>
-                <div>select color</div>
+        <div className='d-flex flex-column'>
+            <div className='render-dropdown'>
+                <div className='render-select' onClick={() => setTypeDropdownVisible(!typeDropdownVisible)}>
+                    Select type {selectedType}
                 </div>
-        </>
+                {typeDropdownVisible && (
+                    <div className='render-dropdown-content'>
+                        {['single', 'double', 'triple'].map((type) => (
+                            <div key={type} onClick={() => handleTypeClick(type)}>
+                                {type}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+            <div className='render-dropdown'>
+                <div className='render-select' onClick={() => setTelaDropdownVisible(!telaDropdownVisible)}>
+                    Select tela {selectedTela}
+                </div>
+                {telaDropdownVisible && (
+                    <div className='render-dropdown-content'>
+                        {Object.keys(data).map((key) => (
+                            <div key={key} onClick={() => handleTelaClick(key)}>
+                                {key}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+            <div className='render-dropdown'>
+                <div className='render-select' onClick={() => setColorDropdownVisible(!colorDropdownVisible)}>
+                    Select color {selectedColor}
+                </div>
+                {colorDropdownVisible && (
+                    <div className='render-dropdown-content'>
+                        {data[selectedTela].map((color, index) => (
+                            <div key={index} onClick={() => handleColorClick(selectedTela, color)}>
+                                {color}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }
 
@@ -67,7 +104,7 @@ const RenderWrapper = ({ data }) => {
     return (
         <div className='render-container'>
             <div>Tela : {Object.keys(uiPillo)[0]} <br /> Color: {Object.values(uiPillo)[0]}</div>
-            <RenderMenu data={sortDataValues(data)} setUiPillo={setUiPillo} />
+            <RenderMenu data={sortDataValues(data)} uiPillo={uiPillo} setUiPillo={setUiPillo} />
         </div>
     )
 }
@@ -76,7 +113,7 @@ const Fabric = ({ data }) => {
 
     return (
         <div>
-            <h1 style={{textAlign: 'center'}}>Fabric Component</h1>
+            <h1 style={{ textAlign: 'center' }}>Fabric Component</h1>
             <div className='d-flex flex-column'>
                 {Object.entries(data).map(([key, value]) => {
                     return (
