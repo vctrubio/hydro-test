@@ -39,7 +39,7 @@ const RenderMenu = ({ data, setUiPillo }) => {
 
 const RenderWrapper = ({ data }) => {
     const [uiPillo, setUiPillo] = useState(data.DEFAULT);
-    
+
     const sortDataValues = (data) => {
         delete data.DEFAULT; //  to pass to RenderMenu we don't want this option
         let sortedData = {};
@@ -62,6 +62,32 @@ const RenderWrapper = ({ data }) => {
     )
 }
 
+const Fabric = () => {
+    return (
+        <div>
+            <h1>Fabric Component</h1>
+            <p>This is the Fabric component.</p>
+        </div>
+    );
+}
+
+const HowDoesItWork = () => {
+    return (
+        <div>
+            <h1>How Does It Work Component</h1>
+            <p>This is the How Does It Work component.</p>
+        </div>
+    );
+}
+
+const Specifications = () => {
+    return (
+        <div>
+            <h1>Specifications Component</h1>
+            <p>This is the Specifications component.</p>
+        </div>
+    );
+}
 
 const RenderBar = () => {
     const TitleEnum = Object.freeze({
@@ -70,12 +96,40 @@ const RenderBar = () => {
         C: 'Specifications'
     });
 
-    const [title, setTile] = useState(TitleEnum.A);
+    const componentMap = {
+        [TitleEnum.A]: <Fabric />,
+        [TitleEnum.B]: <HowDoesItWork />,
+        [TitleEnum.C]: <Specifications />
+    };
+
+    const [title, setTitle] = useState(TitleEnum.A);
+    const handleClick = (newTitle) => {
+        setTitle(newTitle);
+    }
 
     return (
         <div className='render-bar'>
-            <div>title</div>
-            <div>component</div>
+            <div className='render-navbar'>
+                <div
+                    onClick={() => handleClick(TitleEnum.A)}
+                    className={title === TitleEnum.A ? 'active' : ''}
+                >
+                    {TitleEnum.A}
+                </div>
+                <div
+                    onClick={() => handleClick(TitleEnum.B)}
+                    className={title === TitleEnum.B ? 'active' : ''}
+                >
+                    {TitleEnum.B}
+                </div>
+                <div
+                    onClick={() => handleClick(TitleEnum.C)}
+                    className={title === TitleEnum.C ? 'active' : ''}
+                >
+                    {TitleEnum.C}
+                </div>
+            </div>
+            <div>{componentMap[title]}</div>
         </div>
     )
 }
@@ -98,7 +152,7 @@ export const RenderProposal = () => {
     return (
         <>
             <RenderWrapper data={pillowDataConfig} />;
-            <RenderBar/>
+            <RenderBar />
         </>
-    ) 
+    )
 }
