@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../css/Render.css';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 async function fetchJsonFile() {
     try {
@@ -25,8 +26,14 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
     }
 
     const handleTelaClick = (key) => {
-        setSelection(prevState => ({ ...prevState, selectedTela: key, selectedColor: data[key][0] }));
-        setUiPillo(prevState => ({ ...prevState, [key]: data[key][0] }));
+        //check to see if previous color exist in new tela, else change to first color //not 100% working
+        setSelection(prevState => ({ ...prevState, selectedTela: key }));
+        if (data[key].includes(uiPillo[key])) {
+            setSelection(prevState => ({ ...prevState, selectedColor: uiPillo[key] }));
+        } else {
+            setSelection(prevState => ({ ...prevState, selectedColor: data[key][0] }));
+            setUiPillo(prevState => ({ ...prevState, [key]: data[key][0] }));
+        }
         setTelaDropdownVisible(false);
     }
 
@@ -104,11 +111,24 @@ const RenderView = ({ selectedColor }) => {
         renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
         mountRef.current.appendChild(renderer.domElement);
 
+        // Controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; // optional, for inertia
+        controls.dampingFactor = 0.25; // optional, damping inertia
+        controls.enableZoom = true; // optional, if you want zoom
+        controls.minDistance = 0.3;
+        controls.maxDistance = 1.1; // set zoom out limit
+        
         // Lighting
         const light = new THREE.DirectionalLight(0xffffff, .8);
         light.position.set(0, 1, 0).normalize();
         scene.add(light);
 
+        // New light from below
+        const lightFromBelow = new THREE.DirectionalLight(0xffffff, 0.5);
+        lightFromBelow.position.set(0, -1, 0);
+        scene.add(lightFromBelow);
+        
         const ambientLight = new THREE.AmbientLight(0x404040);
         scene.add(ambientLight);
 
@@ -159,6 +179,7 @@ const RenderView = ({ selectedColor }) => {
             // Animation loop
             const animate = function () {
                 requestAnimationFrame(animate);
+                controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
                 renderer.render(scene, camera);
             };
 
