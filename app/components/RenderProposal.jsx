@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '../css/Render.css'
+import '../css/Render.css';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
 
 async function fetchJsonFile() {
     try {
@@ -14,27 +13,25 @@ async function fetchJsonFile() {
     }
 }
 
-const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
-    const [selectedTela, setSelectedTela] = useState(Object.keys(data)[0]);
-    const [selectedColor, setSelectedColor] = useState(Object.values(data)[0][0]); // Initialize with the first color of the first tela
-    const [selectedType, setSelectedType] = useState('single'); // Initialize with 'single'
+const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
     const [telaDropdownVisible, setTelaDropdownVisible] = useState(false);
     const [colorDropdownVisible, setColorDropdownVisible] = useState(false);
     const [typeDropdownVisible, setTypeDropdownVisible] = useState(false);
 
-    const handleColorClick = (key, value) => {
-        setUiPillo(prevState => ({ ...prevState, [key]: value }));
-        setSelectedColor(value);
+    const handleColorClick = (value) => {
+        setUiPillo(prevState => ({ ...prevState, [selection.selectedTela]: value }));
+        setSelection(prevState => ({ ...prevState, selectedColor: value }));
         setColorDropdownVisible(false);
     }
 
     const handleTelaClick = (key) => {
-        setSelectedTela(key);
+        setSelection(prevState => ({ ...prevState, selectedTela: key, selectedColor: data[key][0] }));
+        setUiPillo(prevState => ({ ...prevState, [key]: data[key][0] }));
         setTelaDropdownVisible(false);
     }
 
     const handleTypeClick = (type) => {
-        setSelectedType(type);
+        setSelection(prevState => ({ ...prevState, selectedType: type }));
         setUiPillo(prevState => ({ ...prevState, type }));
         setTypeDropdownVisible(false);
     }
@@ -43,7 +40,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
         <div className='d-flex flex-column'>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setTypeDropdownVisible(!typeDropdownVisible)}>
-                    Select type {selectedType}
+                    Select type {selection.selectedType}
                 </div>
                 {typeDropdownVisible && (
                     <div className='render-dropdown-content'>
@@ -57,7 +54,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setTelaDropdownVisible(!telaDropdownVisible)}>
-                    Select tela {selectedTela}
+                    Select tela {selection.selectedTela}
                 </div>
                 {telaDropdownVisible && (
                     <div className='render-dropdown-content'>
@@ -71,12 +68,12 @@ const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setColorDropdownVisible(!colorDropdownVisible)}>
-                    Select color {selectedColor}
+                    Select color {selection.selectedColor}
                 </div>
                 {colorDropdownVisible && (
                     <div className='render-dropdown-content'>
-                        {data[selectedTela].map((color, index) => (
-                            <div key={index} onClick={() => handleColorClick(selectedTela, color)}>
+                        {data[selection.selectedTela].map((color, index) => (
+                            <div key={index} onClick={() => handleColorClick(color)}>
                                 {color}
                             </div>
                         ))}
@@ -87,7 +84,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
     )
 }
 
-const RenderView = () => {
+const RenderView = ({ selectedColor }) => {
     const mountRef = useRef(null);
 
     const handleResize = useCallback((renderer, camera) => {
@@ -102,13 +99,14 @@ const RenderView = () => {
         // Scene, camera, and renderer
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
         renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
         mountRef.current.appendChild(renderer.domElement);
 
         // Lighting
-        const light = new THREE.DirectionalLight(0xff22ff, 1);
-        light.position.set(0, 0, 1).normalize();
+        const light = new THREE.DirectionalLight(0xffffff, .8);
+        light.position.set(0, 1, 0).normalize();
         scene.add(light);
 
         const ambientLight = new THREE.AmbientLight(0x404040);
@@ -118,6 +116,17 @@ const RenderView = () => {
         const loader = new GLTFLoader();
         loader.load('/Pillow.glb', (gltf) => {
             const model = gltf.scene;
+
+            // Apply the initial texture
+            const textureLoader = new THREE.TextureLoader();
+            let texture = textureLoader.load(`/telas/${selectedColor}.jpg`);
+            model.traverse((node) => {
+                if (node.isMesh) {
+                    node.material.map = texture;
+                    node.material.needsUpdate = true;
+                }
+            });
+
             scene.add(model);
 
             // Compute bounding box of the model
@@ -134,7 +143,12 @@ const RenderView = () => {
             const fov = camera.fov * (Math.PI / 180);
             let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
             cameraZ *= 1.5; // Zoom out a little so the object is not too close
+
             camera.position.z = cameraZ;
+            // Move the camera upwards
+            camera.position.y = cameraZ / 2; 
+            // Rotate the camera to point downwards
+            camera.rotation.x = -Math.PI / 6; 
 
             const minZ = bbox.min.z;
             const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
@@ -159,20 +173,24 @@ const RenderView = () => {
             window.removeEventListener('resize', () => handleResize(renderer, camera));
             mountRef.current.removeChild(renderer.domElement);
         };
-    }, [handleResize]);
+    }, [handleResize, selectedColor]); // Re-run the effect when selectedColor changes
 
-    return <div ref={mountRef} style={{}}/>;
+    return <div className="render-view" ref={mountRef} />;
 };
 
 const RenderWrapper = ({ data }) => {
     const [uiPillo, setUiPillo] = useState(data.DEFAULT);
+    const [selection, setSelection] = useState({
+        selectedTela: Object.keys(data)[0],
+        selectedColor: data[Object.keys(data)[0]][0],
+        selectedType: 'single'
+    });
 
     const sortDataValues = (data) => {
         delete data.DEFAULT; //  to pass to RenderMenu we don't want this option
         let sortedData = {};
         Object.keys(data).forEach(key => {
             if (Array.isArray(data[key])) {
-                // sortedData[key] = [...data[key]].sort(); // ASC
                 sortedData[key] = [...data[key]].sort((a, b) => b - a); //DESC
             } else {
                 sortedData[key] = data[key];
@@ -183,8 +201,8 @@ const RenderWrapper = ({ data }) => {
 
     return (
         <div className='render-container'>
-            <RenderView></RenderView>
-            <RenderMenu data={sortDataValues(data)} uiPillo={uiPillo} setUiPillo={setUiPillo} />
+            <RenderView selectedColor={selection.selectedColor} />
+            <RenderMenu data={sortDataValues(data)} uiPillo={uiPillo} setUiPillo={setUiPillo} selection={selection} setSelection={setSelection} />
         </div>
     )
 }
@@ -294,7 +312,7 @@ export const RenderProposal = () => {
 
     return (
         <>
-            <RenderWrapper data={pillowDataConfig} />;
+            <RenderWrapper data={pillowDataConfig} />
             <RenderBar data={pillowDataConfig} />
         </>
     )
