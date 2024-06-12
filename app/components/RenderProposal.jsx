@@ -26,11 +26,8 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
     }
 
     const handleTelaClick = (key) => {
-        //check to see if previous color exist in new tela, else change to first color //not 100% working
         setSelection(prevState => ({ ...prevState, selectedTela: key }));
-        if (data[key].includes(uiPillo[key])) {
-            setSelection(prevState => ({ ...prevState, selectedColor: uiPillo[key] }));
-        } else {
+        if (!data[key].includes(selection.selectedColor)) {
             setSelection(prevState => ({ ...prevState, selectedColor: data[key][0] }));
             setUiPillo(prevState => ({ ...prevState, [key]: data[key][0] }));
         }
@@ -114,11 +111,11 @@ const RenderView = ({ selectedColor }) => {
         // Controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true; // optional, for inertia
-        controls.dampingFactor = 0.25; // optional, damping inertia
+        controls.dampingFactor = 0.05; // optional, damping inertia
         controls.enableZoom = true; // optional, if you want zoom
         controls.minDistance = 0.3;
         controls.maxDistance = 1.1; // set zoom out limit
-        
+
         // Lighting
         const light = new THREE.DirectionalLight(0xffffff, .8);
         light.position.set(0, 1, 0).normalize();
@@ -128,7 +125,7 @@ const RenderView = ({ selectedColor }) => {
         const lightFromBelow = new THREE.DirectionalLight(0xffffff, 0.5);
         lightFromBelow.position.set(0, -1, 0);
         scene.add(lightFromBelow);
-        
+
         const ambientLight = new THREE.AmbientLight(0x404040);
         scene.add(ambientLight);
 
@@ -166,9 +163,9 @@ const RenderView = ({ selectedColor }) => {
 
             camera.position.z = cameraZ;
             // Move the camera upwards
-            camera.position.y = cameraZ / 2; 
+            camera.position.y = cameraZ / 2;
             // Rotate the camera to point downwards
-            camera.rotation.x = -Math.PI / 6; 
+            camera.rotation.x = -Math.PI / 6;
 
             const minZ = bbox.min.z;
             const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
