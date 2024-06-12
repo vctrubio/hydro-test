@@ -17,7 +17,7 @@
         border: 1px solid black;
         height: 100%;
         width: 100%;
-        padding-top: 2em;
+        /* padding-top: 2em; */
     }
 }
 
@@ -39,7 +39,6 @@
     margin: 2em;
     height: 82px;
     width: 82px;
-    border: 1px solid black;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -80,9 +79,6 @@
     border: 1px solid grey;
     border-radius: 2px;
 }
-
-
-
 
 .render-dropdown {
     position: relative;

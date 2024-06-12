@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../css/Render.css'
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
 
 async function fetchJsonFile() {
     try {
@@ -84,6 +87,83 @@ const RenderMenu = ({ data, uiPillo, setUiPillo }) => {
     )
 }
 
+const RenderView = () => {
+    const mountRef = useRef(null);
+
+    const handleResize = useCallback((renderer, camera) => {
+        const width = mountRef.current.clientWidth;
+        const height = mountRef.current.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }, []);
+
+    useEffect(() => {
+        // Scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+        mountRef.current.appendChild(renderer.domElement);
+
+        // Lighting
+        const light = new THREE.DirectionalLight(0xff22ff, 1);
+        light.position.set(0, 0, 1).normalize();
+        scene.add(light);
+
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        // Load 3D model
+        const loader = new GLTFLoader();
+        loader.load('/Pillow.glb', (gltf) => {
+            const model = gltf.scene;
+            scene.add(model);
+
+            // Compute bounding box of the model
+            const bbox = new THREE.Box3().setFromObject(model);
+            const center = bbox.getCenter(new THREE.Vector3());
+            const size = bbox.getSize(new THREE.Vector3());
+
+            // Reposition the model
+            model.position.sub(center); // Center the model
+            model.position.y -= size.y / 2; // Adjust height if necessary
+
+            // Adjust camera position to fit the model
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+            cameraZ *= 1.5; // Zoom out a little so the object is not too close
+            camera.position.z = cameraZ;
+
+            const minZ = bbox.min.z;
+            const cameraToFarEdge = minZ < 0 ? -minZ + cameraZ : cameraZ - minZ;
+
+            camera.far = cameraToFarEdge * 3;
+            camera.updateProjectionMatrix();
+
+            // Animation loop
+            const animate = function () {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            };
+
+            animate();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => handleResize(renderer, camera));
+
+        // Clean up on unmount
+        return () => {
+            window.removeEventListener('resize', () => handleResize(renderer, camera));
+            mountRef.current.removeChild(renderer.domElement);
+        };
+    }, [handleResize]);
+
+    return <div ref={mountRef} style={{}}/>;
+};
+
 const RenderWrapper = ({ data }) => {
     const [uiPillo, setUiPillo] = useState(data.DEFAULT);
 
@@ -103,7 +183,7 @@ const RenderWrapper = ({ data }) => {
 
     return (
         <div className='render-container'>
-            <div>Tela : {Object.keys(uiPillo)[0]} <br /> Color: {Object.values(uiPillo)[0]}</div>
+            <RenderView></RenderView>
             <RenderMenu data={sortDataValues(data)} uiPillo={uiPillo} setUiPillo={setUiPillo} />
         </div>
     )
