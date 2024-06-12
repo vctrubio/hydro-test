@@ -73,10 +73,17 @@
     border-radius: 2px;
 }
 
+.render-select:hover {
+    background-color: #f1f1f1;
+}
+
 .render-dropdown {
     position: relative;
     display: block;
     width: 100%;
+    cursor: pointer;
+
+
 }
 
 .render-dropdown-content {

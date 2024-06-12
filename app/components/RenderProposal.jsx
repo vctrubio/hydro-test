@@ -41,7 +41,11 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
     }
 
     return (
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column pl-2'>
+            <div style={{ textAlign: 'left', marginBottom: '2em' }}>
+                <h1>Title Bar</h1>
+                <h3>Title Description</h3>
+            </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setTypeDropdownVisible(!typeDropdownVisible)}>
                     Select type {selection.selectedType}
