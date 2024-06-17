@@ -40,15 +40,19 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
         setTypeDropdownVisible(false);
     }
 
+    useEffect(() => {
+        console.log('hi there, ', typeDropdownVisible);
+    }, [typeDropdownVisible]);
+
     return (
         <div className='d-flex flex-column pl-2'>
-            <div style={{ textAlign: 'left', marginBottom: '2em' }}>
-                <h1>Title Bar</h1>
-                <h3>Title Description</h3>
+            <div className='render-title'>
+                <h1>Big Hug XL</h1>
+                <h2>Big Hug XL is a cordless heating pad with infrared technology and rechargeable battery. The Original fabric is super soft and fits every style.</h2>
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setTypeDropdownVisible(!typeDropdownVisible)}>
-                    Select type {selection.selectedType}
+                    Escoge tipo: {selection.selectedType}
                 </div>
                 {typeDropdownVisible && (
                     <div className='render-dropdown-content'>
@@ -62,7 +66,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setTelaDropdownVisible(!telaDropdownVisible)}>
-                    Select tela {selection.selectedTela}
+                    Escoge tela: {selection.selectedTela}
                 </div>
                 {telaDropdownVisible && (
                     <div className='render-dropdown-content'>
@@ -76,7 +80,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setColorDropdownVisible(!colorDropdownVisible)}>
-                    Select color {selection.selectedColor}
+                    Escoge color: {selection.selectedColor}
                 </div>
                 {colorDropdownVisible && (
                     <div className='render-dropdown-content'>
@@ -108,9 +112,10 @@ const RenderView = ({ selectedColor }) => {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
+        // renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
         renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
         mountRef.current.appendChild(renderer.domElement);
+
 
         // Controls
         const controls = new OrbitControls(camera, renderer.domElement);
@@ -119,6 +124,8 @@ const RenderView = ({ selectedColor }) => {
         controls.enableZoom = true; // optional, if you want zoom
         controls.minDistance = 0.3;
         controls.maxDistance = 1.1; // set zoom out limit
+        controls.autoRotateSpeed = 0.6;
+        controls.autoRotate = true;
 
         // Lighting
         const light = new THREE.DirectionalLight(0xffffff, .8);
@@ -197,7 +204,9 @@ const RenderView = ({ selectedColor }) => {
         };
     }, [handleResize, selectedColor]); // Re-run the effect when selectedColor changes
 
-    return <div className="render-view" ref={mountRef} />;
+    return (
+        <div className="render-view" ref={mountRef} />
+    );
 };
 
 const RenderWrapper = ({ data }) => {
