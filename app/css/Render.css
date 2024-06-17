@@ -1,13 +1,9 @@
 .render-container {
     height: 80vh;
-    width: 100vw;
-
+    width: 80vw;
     display: flex;
     flex-direction: row;
-    gap: 1em;
-    padding: 1em;
-    text-align: center;
-
+    justify-content: center;
     >* {
         height: 100%;
         width: 100%;
@@ -59,7 +55,7 @@
 .render-bar{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-items: center;
 }
 

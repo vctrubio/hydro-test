@@ -6,6 +6,7 @@ import { BannerDesc, BannerPhoto } from '~/components/Banners';
 import { Calculator } from '~/components/Calculator';
 import { ContactForm } from '~/components/ContactForm';
 import Faq from '~/components/Faq';
+import { RenderProposal } from '~/components/RenderProposal';
 
 export const meta = () => {
   return [{title: 'Warme'}];
@@ -22,6 +23,7 @@ export default function Homepage() {
       <BannerPhoto/>
       <BannerDesc/>
       <Calculator/>
+      <RenderProposal/>
       <ContactForm/>
       <Faq/>
     </div>

@@ -239,7 +239,6 @@ const RenderWrapper = ({ data }) => {
 }
 
 const Fabric = ({ data }) => {
-
     return (
         <div>
             <h1 style={{ textAlign: 'center' }}>Fabric Component</h1>
@@ -253,7 +252,7 @@ const Fabric = ({ data }) => {
                             <div className='d-flex'>
                                 {Object.entries(value).map(([subKey, subValue]) => {
                                     return (
-                                        <div className='d-flex flex-column text-center' style={{gap: '.4em'}}>
+                                        <div className='d-flex flex-column text-center' style={{ gap: '.4em' }}>
                                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
                                             </div>
                                             <div>
@@ -350,9 +349,9 @@ export const RenderProposal = () => {
     }
 
     return (
-        <>
+        <div className='d-flex justify-content-center align-items-center flex-column'>
             <RenderWrapper data={pillowDataConfig} />
             <RenderBar data={pillowDataConfig} />
-        </>
+        </div>
     )
 }

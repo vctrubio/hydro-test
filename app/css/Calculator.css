@@ -9,7 +9,7 @@
     text-align: left;
 
     margin-top: 2em;
-    margin-bottom: 10em;
+    margin-bottom: 6em;
 }
 
 .calculator-question-units {
@@ -55,15 +55,14 @@
 .punto-g {
     display: flex;
     flex-direction: row;
-    text-align: center;
+    text-align: left;
     background-color: antiquewhite;
-    border-radius: 2px;
+    border-radius: 5px;
     width: 80%;
     margin: auto;
     justify-content: center;
     gap: 2em;
     margin-top: 8em;
-
     >* {
         width: 50%;
     }
@@ -77,7 +76,8 @@
 .punto-g-banner {
     width: 50%;
     background-color: grey;
-    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /* // */

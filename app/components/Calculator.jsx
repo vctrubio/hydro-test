@@ -20,12 +20,12 @@ const PuntoDeAhorro = () => {
             </flex>
 
             <div className='punto-g'>
-                <div className='p-4 text-center'>
-                    <h2>¿Te gustaría saber exactamente cuánto podrías ahorrar con Warme?</h2>
+                <div className='p-4'>
+                    <h5 className='mb-3'>¿Te gustaría saber exactamente cuánto podrías ahorrar con Warme?</h5>
                     <p>Déjanos tu mail y te haremos un estudio exhaustivo personalizado</p>
                     <div className='d-flex flex-row justify-content-center mt-1' style={{ gap: '1em' }}>
-                        <input type='text' placeholder='Tu email' />
-                        <button>Pedir estudio</button>
+                        <input type='text' placeholder='email'/>
+                        <button style={{width: '200px', fontWeight: 'lighter'}}>Pedir estudio</button>
                     </div>
                 </div>
                 <div className='punto-g-banner'>

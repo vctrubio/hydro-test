@@ -30,7 +30,8 @@ export function Header({ header, isLoggedIn, cart, publicStoreDomain }) {
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
       />
-      <LanguageBarrier />
+      <div></div>
+      {/* <LanguageBarrier /> */}
       {/* <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} /> */}
     </header>
   );
@@ -188,9 +189,9 @@ const MY_MENU = {
       id: 'gid://shopify/MenuItem/461609500729',
       resourceId: null,
       tags: [],
-      title: 'Render',
+      title: 'Acerca',
       type: 'HTTP',
-      url: '/render',
+      url: '/',
       items: [],
     },
     {
