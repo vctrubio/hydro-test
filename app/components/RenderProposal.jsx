@@ -246,15 +246,23 @@ const Fabric = ({ data }) => {
             <div className='d-flex flex-column'>
                 {Object.entries(data).map(([key, value]) => {
                     return (
-                        <div className='render-row' key={key}>
-                            {key}
-                            {Object.entries(value).map(([subKey, subValue]) => {
-                                return (
-                                    <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
-                                        {/* {JSON.stringify(subValue)} */}
-                                    </div>
-                                )
-                            })}
+                        <div className='d-flex flex-column'>
+                            <div className='render-row ' key={key}>
+                                {key}
+                            </div>
+                            <div className='d-flex'>
+                                {Object.entries(value).map(([subKey, subValue]) => {
+                                    return (
+                                        <div className='d-flex flex-column text-center' style={{gap: '.4em'}}>
+                                            <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
+                                            </div>
+                                            <div>
+                                                {subValue}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     )
                 })}
