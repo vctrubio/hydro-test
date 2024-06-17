@@ -41,7 +41,7 @@ export const BannerPhoto = () => {
 
 export const BannerDesc = () => {
     return (
-        <>
+        <div>
             <flex className='banner-desc'>
                 <div className='banner-desc-photo'>
                 </div>
@@ -52,7 +52,7 @@ export const BannerDesc = () => {
                     </p>
                 </div>
             </flex>
-            <div className='banner-cartoon'>
+            <flex className='banner-cartoon'>
                 <div className='margin-up-down'>
                     <div className="icon-text" style={{ marginRight: '25px' }}>
                         <img src={logo} alt="Icon" />
@@ -73,7 +73,7 @@ export const BannerDesc = () => {
                 </div>
                 <div className='banner-cartoon-photo'>
                 </div>
-            </div>
-        </>
+            </flex>
+        </div>
     )
 }

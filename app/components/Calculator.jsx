@@ -1,13 +1,9 @@
 import React from 'react';
 import '../css/Calculator.css'
 
-// ALL GOOD, just need styling for mobile
-// TODOS....
-//
-
 const PuntoDeAhorro = () => {
     return (
-        <div style={{ maxWidth: '1000px', alignItems: 'center', marginTop: '5em' }}>
+        <div style={{ maxWidth: '989px', alignItems: 'center', marginTop: '5em' }}>
             <flex className='punto-ahorro'>
                 <div>
                     <h1 >El punto de amortización</h1>
@@ -24,8 +20,8 @@ const PuntoDeAhorro = () => {
                     <h5 className='mb-3'>¿Te gustaría saber exactamente cuánto podrías ahorrar con Warme?</h5>
                     <p>Déjanos tu mail y te haremos un estudio exhaustivo personalizado</p>
                     <div className='d-flex flex-row justify-content-center mt-1' style={{ gap: '1em' }}>
-                        <input type='text' placeholder='email'/>
-                        <button style={{width: '200px', fontWeight: 'lighter'}}>Pedir estudio</button>
+                        <input type='text' placeholder='email' />
+                        <button style={{ width: '200px', fontWeight: 'lighter' }}>Pedir estudio</button>
                     </div>
                 </div>
                 <div className='punto-g-banner'>
@@ -41,7 +37,7 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
 
     return (
         <div className='calculator-question'>
-            <span style={{ fontSize: '1.4em', width: '100%', marginBottom: '1em' }}>¿{question}?</span>
+            <div className='calculator-qq'>¿{question}?</div>
             <div className='calculator-question-units'>
                 <input
                     type="range"
@@ -63,20 +59,16 @@ const BarContainer = ({ title, a, b, footer }) => {
             <div className='bar-title' style={{ fontWeight: 'bold' }}>{title}</div>
             <div className='bar-2chart'>
                 <div className='d-flex flex-column align-end'>
-                    <div className='bar-outline' style={{
-                        width: '165px', /* Default size */
-                        height: `${a.height}px`, /* Set height based on value */
-                        backgroundColor: a.backgroundColor, /* Green color */
-                        paddingTop: '5px'
+                    <div className='bar-content' style={{
+                        height: `${a.height}px`,
+                        backgroundColor: a.backgroundColor
                     }}>{a.height}€</div>
                     <div className='bar-label'>{a.label}</div>
                 </div>
                 <div>
-                    <div className='bar-outline' style={{
-                        width: '165px', /* Default size */
+                    <div className='bar-content' style={{
                         height: `${b.height}px`, /* Set height based on value */
                         backgroundColor: b.backgroundColor, /* Green color */
-                        paddingTop: '5px'
                     }}>{b.height}€</div>
                     <div className='bar-label'>{b.label}</div>
                 </div>
@@ -129,8 +121,7 @@ export const Calculator = () => {
     return (
         <div className='calculator'>
             <h1 style={{ marginBottom: '2em' }}>Calcula tu ahorro cambiándote a Warme</h1>
-            <div>
-
+            <div className='calculator-mb'>
                 <flex>
                     <div className='calculator-qs'>
                         {questions.map((question, index) => (
@@ -146,7 +137,7 @@ export const Calculator = () => {
                         ))}
                     </div>
                 </flex>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left', paddingLeft: '4em' }}>
+                <div className='calculator-footer'>
                     *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
                     quemadores de gas de 12 kWh y un precio de la <br />energía de 3€ por kWh.
                 </div>
