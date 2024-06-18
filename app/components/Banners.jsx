@@ -26,7 +26,7 @@ export const BannerPhoto = () => {
     if (loading) {
         return <div>Loading...</div>; // or return null, or a loading spinner, etc.
     }
-    
+
     if (!backgroundImage) {
         throw new Error("Background image not found");
     }
@@ -56,7 +56,9 @@ export const BannerDesc = () => {
                 <div className='margin-up-down'>
                     <div className="icon-text" style={{ marginRight: '25px' }}>
                         <img src={logo} alt="Icon" />
-                        Calor bajo demanda
+                        <span style={{paddingRight: '16px'}}>
+                            Calor bajo demanda
+                        </span>
                     </div>
                     <div className="icon-text">
                         <img src={logo} alt="Icon" />

@@ -57,7 +57,7 @@
     margin: 4em 0;
     padding: 2em;
     min-height: 420px;
-
+    border-radius: 5px;
     >* {
         padding: 0 1em;
         width: 50%;

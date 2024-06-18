@@ -246,7 +246,7 @@ const RenderWrapper = ({ data }) => {
 const Fabric = ({ data }) => {
     return (
         <div>
-            <h1 style={{ textAlign: 'center',}}>Fabric Component</h1>
+            <h1 style={{ textAlign: 'center', }}>Fabric Component</h1>
             <div className='d-flex flex-column'>
                 {Object.entries(data).map(([key, value]) => {
                     return (
@@ -255,13 +255,13 @@ const Fabric = ({ data }) => {
                                 {key}
                             </div>
                             <div className='d-flex'>
-                                {Object.entries(value).map(([subKey, subValue]) => {
+                                {Object.entries(value).sort((a, b) => a[1].localeCompare(b[1])).map(([subKey, subValue]) => {
                                     return (
                                         <div className='render-card'>
                                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
                                             </div>
                                             <div className='render-subvalue'>
-                                                    {subValue.replace(/-/g, ' ')}
+                                                {subValue.replace(/-/g, ' ')}
                                             </div>
                                         </div>
                                     )
