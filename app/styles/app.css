@@ -13,6 +13,7 @@
 
   --color-primary: #5056c9;
   --color-navbar: #5d5c5f;
+  --bs-link-color-rgb: rgb(0, 0, 0);
 }
 
 flex {
@@ -146,6 +147,11 @@ aside li {
 * components/Header
 * --------------------------------------------------
 */
+a {
+  text-decoration: none !important; /* Important to override Bootstrap */
+}
+
+
 .header {
   align-items: center;
   background: #fff;

@@ -16,7 +16,7 @@ import appStyles from '~/styles/app.css?url';
 import { PageLayout } from '~/components/PageLayout';
 import { FOOTER_QUERY, HEADER_QUERY } from '~/lib/fragments';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './styles/app.css';
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
  * @type {ShouldRevalidateFunction}

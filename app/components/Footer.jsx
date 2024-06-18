@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Await, NavLink } from '@remix-run/react';
 import '../css/Footer.css';
+import '../css/NavBar.css';
 
 export const LinksTo = () => {
   return (

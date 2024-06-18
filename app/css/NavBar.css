@@ -31,10 +31,8 @@
         cursor: pointer;
         text-decoration: none;
     }
-
-
     >*:hover {
-        color: #888 !important;
+        color: #000000 !important;
         text-decoration: none;
     }
 
