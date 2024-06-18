@@ -205,7 +205,9 @@ const RenderView = ({ selectedColor }) => {
         // Clean up on unmount
         return () => {
             window.removeEventListener('resize', () => handleResize(renderer, camera));
-            mountRef.current.removeChild(renderer.domElement);
+            if (mountRef.current && renderer.domElement) {
+                mountRef.current.removeChild(renderer.domElement);
+            }
         };
     }, [handleResize, selectedColor]); // Re-run the effect when selectedColor changes
 
@@ -246,7 +248,7 @@ const RenderWrapper = ({ data }) => {
 const Fabric = ({ data }) => {
     return (
         <div>
-            <h1 style={{ textAlign: 'center',}}>Fabric Component</h1>
+            <h1 style={{ textAlign: 'center', }}>Fabric Component</h1>
             <div className='d-flex flex-column'>
                 {Object.entries(data).map(([key, value]) => {
                     return (
@@ -261,7 +263,7 @@ const Fabric = ({ data }) => {
                                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
                                             </div>
                                             <div className='render-subvalue'>
-                                                    {subValue.replace(/-/g, ' ')}
+                                                {subValue.replace(/-/g, ' ')}
                                             </div>
                                         </div>
                                     )
