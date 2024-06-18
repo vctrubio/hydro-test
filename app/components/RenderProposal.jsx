@@ -257,7 +257,7 @@ const Fabric = ({ data }) => {
                                 {key}
                             </div>
                             <div className='d-flex'>
-                                {Object.entries(value).map(([subKey, subValue]) => {
+                                {Object.entries(value).sort((a, b) => a[1].localeCompare(b[1])).map(([subKey, subValue]) => {
                                     return (
                                         <div className='render-card'>
                                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
