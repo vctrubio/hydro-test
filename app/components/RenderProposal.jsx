@@ -16,7 +16,6 @@ async function fetchJsonFile() {
 
 function splitHyphen(str) {
     let rtn = str.split('-');
-    // if rtn[0] has a number, remove it 
     if (isNaN(rtn[0]) === false) {
         console.log('rtn[0] has a number');
         rtn.shift();
@@ -49,10 +48,6 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
         setUiPillo(prevState => ({ ...prevState, type }));
         setTypeDropdownVisible(false);
     }
-
-    useEffect(() => {
-        console.log('hi there, ', typeDropdownVisible);
-    }, [typeDropdownVisible]);
 
     return (
         <div className='d-flex flex-column pl-2'>
@@ -123,7 +118,7 @@ const RenderView = ({ selectedColor }) => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         // renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
-        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight - 100);
         mountRef.current.appendChild(renderer.domElement);
 
 
@@ -184,7 +179,7 @@ const RenderView = ({ selectedColor }) => {
 
             camera.position.z = cameraZ;
             // Move the camera upwards
-            camera.position.y = cameraZ / 2;
+            camera.position.y = cameraZ / 3;
             // Rotate the camera to point downwards
             camera.rotation.x = -Math.PI / 6;
 
