@@ -23,8 +23,8 @@ export default function Homepage() {
       <BannerPhoto/>
       <BannerDesc/>
       <Calculator/>
-      {/* <RenderProposal/> */}
-      {/* <ContactForm/> */}
+      <RenderProposal/>
+      <ContactForm/>
       <Faq/>
     </div>
   );

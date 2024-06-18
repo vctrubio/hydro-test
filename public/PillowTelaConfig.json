@@ -1,10 +1,9 @@
 {
-    "Hopsak": ["white1", "white2", "white3", "red1", "green1", "green2"],
-
-    "Base DSW, DAW": ["white1", "white7", "white8", "green1", "green2"],
-    "Base DSR, DAR": ["white1", "white7", "white8", "white4", "green1", "green2"],
-    "Tela4": ["white3", "white7", "white6", "white4", "red1"],
+    "Hopsak": ["897-white-cherris", "2-white", "3-white"],
+    "Base DSW, DAW": ["2-white", "3-white", "897-white-cherris", "1-green", "023-red-and-sexy-red-again-red"],
+    "Base DSR, DAR": ["897-white-cherris", "2-white", "3-white", "not-found"],
+    "Tela4": ["2-white", "3-white", "023-red-and-sexy-red-again-red"],
     "DEFAULT": {
-        "Hopsak": "white3"
+        "Hopsak": "897-white-cherris"
     }
 }

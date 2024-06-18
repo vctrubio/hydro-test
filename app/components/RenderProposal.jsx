@@ -14,6 +14,16 @@ async function fetchJsonFile() {
     }
 }
 
+function splitHyphen(str) {
+    let rtn = str.split('-');
+    // if rtn[0] has a number, remove it 
+    if (isNaN(rtn[0]) === false) {
+        console.log('rtn[0] has a number');
+        rtn.shift();
+    }
+    return rtn.join(' ')
+}
+
 const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
     const [telaDropdownVisible, setTelaDropdownVisible] = useState(false);
     const [colorDropdownVisible, setColorDropdownVisible] = useState(false);
@@ -80,13 +90,13 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
             </div>
             <div className='render-dropdown'>
                 <div className='render-select' onClick={() => setColorDropdownVisible(!colorDropdownVisible)}>
-                    Escoge color: {selection.selectedColor}
+                    {selection.selectedColor ? `Escoge color: ${splitHyphen(selection.selectedColor)}` : null}
                 </div>
                 {colorDropdownVisible && (
                     <div className='render-dropdown-content'>
                         {data[selection.selectedTela].map((color, index) => (
                             <div key={index} onClick={() => handleColorClick(color)}>
-                                {color}
+                                {splitHyphen(color)}
                             </div>
                         ))}
                     </div>
@@ -241,7 +251,7 @@ const RenderWrapper = ({ data }) => {
 const Fabric = ({ data }) => {
     return (
         <div>
-            <h1 style={{ textAlign: 'center' }}>Fabric Component</h1>
+            <h1 style={{ textAlign: 'center',}}>Fabric Component</h1>
             <div className='d-flex flex-column'>
                 {Object.entries(data).map(([key, value]) => {
                     return (
@@ -252,11 +262,11 @@ const Fabric = ({ data }) => {
                             <div className='d-flex'>
                                 {Object.entries(value).map(([subKey, subValue]) => {
                                     return (
-                                        <div className='d-flex flex-column text-center' style={{ gap: '.4em' }}>
+                                        <div className='render-card'>
                                             <div className='render-hover' style={{ backgroundImage: `url(/telas/${subValue}.jpg)` }} key={subKey}>
                                             </div>
-                                            <div>
-                                                {subValue}
+                                            <div className='render-subvalue'>
+                                                    {subValue.replace(/-/g, ' ')}
                                             </div>
                                         </div>
                                     )

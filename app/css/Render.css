@@ -40,16 +40,29 @@
     font-weight: 00;
 }
 
+.render-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .render-hover {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
     margin: 0em .5em;
     height: 152px;
     width: 152px;
     border-radius: 10px;
-    cursor: pointer;
     background-size: cover;
+}
+
+.render-subvalue {
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 152px;
+    padding: .5em 5px;
+    font-size: smaller;
 }
 
 .render-bar{
@@ -63,7 +76,7 @@
     display: flex;
     flex-direction: row;
     gap: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     >*{
         border-radius: 20px;
         padding: 5px 20px;
