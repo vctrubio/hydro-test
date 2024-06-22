@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Calculator.css'
+import {calculateHuellaCo2 } from './CalculatorCalculate'
 
 const PuntoDeAhorro = () => {
     return (
@@ -80,7 +81,7 @@ const BarContainer = ({ title, a, b, footer }) => {
 export const Calculator = () => {
     const [questions, setQuestions] = React.useState([
         { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 1, desc: '', step: 1 },
-        { text: 'Cuantas estufas electricas tienes', min: 1, max: 20, value: 1, desc: '', step: 1 },
+        { text: 'Cuantas estufas electricas tienes', min: 0, max: 20, value: 0, desc: '', step: 10 },
         { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 1, desc: '', step: 1 },
         { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 4, desc: '', step: 1 },
     ]);
@@ -143,7 +144,7 @@ export const Calculator = () => {
                 </div>
             </div>
             <div className='bar-container-head'>
-                <BarContainer title='Huela Co2' a={b} b={a} footer={'- 58300 Kg/CO2 e (1año)'} />
+                <BarContainer title='Huela Co2' a={calculateHuellaCo2(questions, "tradicional")} b={calculateHuellaCo2(questions, "warme")} footer={'smartman'} />
                 <BarContainer title='Gastos Economicos' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
             </div>
             <PuntoDeAhorro />
