@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Calculator.css'
-import { calculateHuellaCo2 } from './CalculatorCalculate'
+import { calculateCost, calculateHuellaCo2 } from './CalculatorCalculate'
 
 const PuntoDeAhorro = () => {
     return (
@@ -105,26 +105,26 @@ export const Calculator = () => {
         });
     };
 
-    const a = {
+    const tradicionalA = {
         height: calculateHuellaCo2(questions, "tradicional"),
         backgroundColor: '#3B5463',
         label: 'Warme',
     };
 
-    const b = {
+    const warmeA = {
         height: calculateHuellaCo2(questions, "warme"),
         backgroundColor: '#B8ADAD',
         label: 'Tradicional',
     };
 
-    const c = {
-        height: 120,
+    const tradicionalB = {
+        height: calculateCost(questions, "tradicional"),
         backgroundColor: '#3B5463',
         label: 'Warme',
     };
 
-    const d = {
-        height: 80,
+    const warmeB = {
+        height: calculateCost(questions, "warme"),
         backgroundColor: '#B8ADAD',
         label: 'Tradicional',
     };
@@ -154,8 +154,8 @@ export const Calculator = () => {
                 </div>
             </div>
             <div className='bar-container-head'>
-                <BarContainer title='Huela Co2' a={b} b={a} footer={'KG/Co2 (mes)'} />
-                <BarContainer title='Gastos Economicos' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
+                <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} />
+                <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'+ 23000€ ahorrados (1año)'} />
             </div>
             <PuntoDeAhorro />
         </div>

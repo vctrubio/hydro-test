@@ -23,5 +23,18 @@ export function calculateHuellaCo2(questionInput, type) {
         return diario * 20
 
     }
-    return null
+    throw "Invalid type"
+}
+
+export function calculateCost(questionInput, type) {
+    if (type == 'tradicional') {
+        const diario =  (questionInput[3].value * questionInput[0].value * json["Precio bombona euros/kg"]) + (questionInput[3].value * questionInput[1].value * json["Precio luz euros/kw"] *json["Consumo estufa electrica kw/h"])
+        return diario * 20
+    }
+    else if (type == "warme"){
+        const diario = questionInput[3].value * questionInput[2].value * json["Precio luz euros/kw"] * json["Consumo Warme kw/h"]
+        return diario * 20
+
+    }
+    throw "Invalid type"
 }
