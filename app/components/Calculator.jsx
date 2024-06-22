@@ -54,7 +54,7 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
     );
 };
 
-const BarContainer = ({ title, a, b, footer }) => {
+const BarContainer = ({ title, a, b, footer, flag }) => {
     const maxValue = 18000; // Maximum value that a.height or b.height can have
     const maxHeightPx = 400; // Maximum height in pixels
 
@@ -84,7 +84,9 @@ const BarContainer = ({ title, a, b, footer }) => {
                     <div className='bar-label'>{b.label}</div>
                 </div>
             </div>
-            <div className='bar-footer'>{Math.round(a.height - b.height)} {footer}</div>
+            <div className='bar-footer'>
+                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${Math.round(b.height - a.height)}`} {footer}
+            </div>
         </div>
     );
 }
@@ -154,8 +156,8 @@ export const Calculator = () => {
                 </div>
             </div>
             <div className='bar-container-head'>
-                <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} />
-                <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'+ 23000€ ahorrados (1año)'} />
+                <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
+                <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" />
             </div>
             <PuntoDeAhorro />
         </div>
