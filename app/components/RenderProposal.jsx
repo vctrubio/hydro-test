@@ -61,7 +61,7 @@ const RenderMenu = ({ data, uiPillo, setUiPillo, selection, setSelection }) => {
                 </div>
                 {typeDropdownVisible && (
                     <div className='render-dropdown-content'>
-                        {['single', 'double', 'triple'].map((type) => (
+                        {['Simple Seated Cushion', 'Double Seated Cushion', 'Sofa Heating Pag'].map((type) => (
                             <div key={type} onClick={() => handleTypeClick(type)}>
                                 {type}
                             </div>
@@ -115,7 +115,7 @@ const RenderView = ({ selectedColor }) => {
     useEffect(() => {
         // Scene, camera, and renderer
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         // renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
         renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight - 100);
@@ -221,7 +221,7 @@ const RenderWrapper = ({ data }) => {
     const [selection, setSelection] = useState({
         selectedTela: Object.keys(data)[0],
         selectedColor: data[Object.keys(data)[0]][0],
-        selectedType: 'single'
+        selectedType: 'Simple Seated Cushion'
     });
 
     const sortDataValues = (data) => {
