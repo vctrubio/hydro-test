@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Calculator.css'
-import {calculateHuellaCo2 } from './CalculatorCalculate'
+import { calculateHuellaCo2 } from './CalculatorCalculate'
 
 const PuntoDeAhorro = () => {
     return (
@@ -55,35 +55,45 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
 };
 
 const BarContainer = ({ title, a, b, footer }) => {
+    const maxValue = 18000; // Maximum value that a.height or b.height can have
+    const maxHeightPx = 400; // Maximum height in pixels
+
+    // Calculate scaling factor
+    const scalingFactor = maxHeightPx / maxValue;
+
+    // Calculate heights in pixels, applying the scaling factor
+    const aHeightPx = Math.min(a.height * scalingFactor, maxHeightPx); // Ensure it does not exceed maxHeightPx
+    const bHeightPx = Math.min(b.height * scalingFactor, maxHeightPx); // Ensure it does not exceed maxHeightPx
+
     return (
         <div className='bar-container'>
             <div className='bar-title' style={{ fontWeight: 'bold' }}>{title}</div>
             <div className='bar-2chart'>
                 <div className='d-flex flex-column align-end'>
                     <div className='bar-content' style={{
-                        height: `${a.height}px`,
+                        height: `${aHeightPx}px`,
                         backgroundColor: a.backgroundColor
-                    }}>{a.height}€</div>
+                    }}>{Math.round(a.height)}€</div>
                     <div className='bar-label'>{a.label}</div>
                 </div>
                 <div>
                     <div className='bar-content' style={{
-                        height: `${b.height}px`, /* Set height based on value */
+                        height: `${bHeightPx}px`, /* Set height based on value */
                         backgroundColor: b.backgroundColor, /* Green color */
-                    }}>{b.height}€</div>
+                    }}>{Math.round(b.height)}€</div>
                     <div className='bar-label'>{b.label}</div>
                 </div>
             </div>
-            <div className='bar-footer'>{footer}</div>
+            <div className='bar-footer'>{Math.round(a.height - b.height)} {footer}</div>
         </div>
     );
 }
 export const Calculator = () => {
     const [questions, setQuestions] = React.useState([
-        { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 1, desc: '', step: 1 },
+        { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 8, desc: '', step: 1 },
         { text: 'Cuantas estufas electricas tienes', min: 0, max: 20, value: 0, desc: '', step: 10 },
-        { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 1, desc: '', step: 1 },
-        { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 4, desc: '', step: 1 },
+        { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 50, desc: '', step: 1 },
+        { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 8, desc: '', step: 1 },
     ]);
 
 
@@ -96,13 +106,13 @@ export const Calculator = () => {
     };
 
     const a = {
-        height: 50,
+        height: calculateHuellaCo2(questions, "tradicional"),
         backgroundColor: '#3B5463',
         label: 'Warme',
     };
 
     const b = {
-        height: 90,
+        height: calculateHuellaCo2(questions, "warme"),
         backgroundColor: '#B8ADAD',
         label: 'Tradicional',
     };
@@ -144,7 +154,7 @@ export const Calculator = () => {
                 </div>
             </div>
             <div className='bar-container-head'>
-                <BarContainer title='Huela Co2' a={calculateHuellaCo2(questions, "tradicional")} b={calculateHuellaCo2(questions, "warme")} footer={'smartman'} />
+                <BarContainer title='Huela Co2' a={b} b={a} footer={'KG/Co2 (mes)'} />
                 <BarContainer title='Gastos Economicos' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
             </div>
             <PuntoDeAhorro />
