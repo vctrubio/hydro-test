@@ -138,8 +138,8 @@
 
     .bar-title,
     .bar-label {
-        font-size: 10px;
-        margin-bottom: 1em;
+        font-size: 14px;
+        margin-bottom: .5em;
         text-align: left;
         padding-left: 1em;
     }

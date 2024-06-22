@@ -79,10 +79,10 @@ const BarContainer = ({ title, a, b, footer }) => {
 }
 export const Calculator = () => {
     const [questions, setQuestions] = React.useState([
-        { text: 'Cuantas estufas tienes', min: 1, max: 10, value: 4, desc: '', step: 1 },
-        { text: 'Cada cuanto cambias la bombona', min: 1, max: 30, value: 3, desc: 'semanas', step: 1 },
-        { text: 'Cuanto pagas por la luz', min: 1, max: 500, value: 1, desc: '€/mes', step: 10 },
-        { text: 'Cuanto pagarias por la luz', min: 1, max: 500, value: 1, desc: '€/mes', step: 10 },
+        { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 1, desc: '', step: 1 },
+        { text: 'Cuantas estufas electricas tienes', min: 1, max: 20, value: 1, desc: '', step: 1 },
+        { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 1, desc: '', step: 1 },
+        { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 4, desc: '', step: 1 },
     ]);
 
 
@@ -143,8 +143,8 @@ export const Calculator = () => {
                 </div>
             </div>
             <div className='bar-container-head'>
-                <BarContainer title='COMPARATIVA - PRECIO' a={b} b={a} footer={'- 58300 Kg/CO2 e (1año)'} />
-                <BarContainer title='COMPARATIVA - EMISSIONES' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
+                <BarContainer title='Huela Co2' a={b} b={a} footer={'- 58300 Kg/CO2 e (1año)'} />
+                <BarContainer title='Gastos Economicos' a={d} b={c} footer={'+ 23000€ ahorrados (1año)'} />
             </div>
             <PuntoDeAhorro />
         </div>
