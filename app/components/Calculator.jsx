@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Calculator.css'
 import { calculateCost, calculateHuellaCo2 } from './CalculatorCalculate'
 import { CalculatorChart } from './CalculatorChart'
 
-const PuntoDeAhorro = ({ data }) => {
+const PuntoDeAhorro = ({ data, ahorroMensual }) => {
     return (
         <div style={{ maxWidth: '989px', alignItems: 'center', marginTop: '5em' }}>
             <flex className='punto-ahorro'>
@@ -13,7 +13,7 @@ const PuntoDeAhorro = ({ data }) => {
                         El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento.
                     </div>
                 </div>
-                <CalculatorChart data={data} />
+                <CalculatorChart data={data} ahorroMensual={ahorroMensual}/>
             </flex>
             <div className='punto-g'>
                 <div className='p-4'>
@@ -53,12 +53,18 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
     );
 };
 
-const BarContainer = ({ title, a, b, footer, flag }) => {
+const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensual}) => {
     // bar-container-height = 400px
     const max = flag === 'huela' ? 18000 : 5600;
     const unit = max / 300;
     const aHeightPx = Math.round(a.height / unit * 10);
     const bHeightPx = Math.round(b.height / unit);
+    
+    useEffect(() => {
+        if (setAhorroMensual) {
+            setAhorroMensual(Math.round(b.height - a.height));
+        }
+    }, [a.height, b.height, setAhorroMensual, ahorroMensual]);
 
     return (
         <div className='bar-container'>
@@ -94,7 +100,7 @@ const BarContainer = ({ title, a, b, footer, flag }) => {
                 </div>
             </div>
             <div className='bar-footer'>
-                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${Math.round(b.height - a.height)}`} {footer}
+                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
             </div>
         </div>
     );
@@ -106,7 +112,7 @@ export const Calculator = () => {
         { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 80, desc: '', step: 1 },
         { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 10, desc: '', step: 1 },
     ]);
-
+    const [ahorroMensual, setAhorroMensual] = React.useState(0);
 
     const handleValueChange = (index, newValue) => {
         setQuestions(prevQuestions => {
@@ -168,9 +174,9 @@ export const Calculator = () => {
             </div>
             <div className='bar-container-head'>
                 <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
-                <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" />
+                <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
             </div>
-            <PuntoDeAhorro data={dataLineChart} />
+            <PuntoDeAhorro data={dataLineChart} ahorroMensual={ahorroMensual} />
 
         </div>
     )

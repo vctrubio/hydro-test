@@ -1,16 +1,18 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
-export const CalculatorChart = ({ data }) => {
+export const CalculatorChart = ({ data, ahorroMensual}) => {
+    console.log('data', data);
     const chartData = Array.from({ length: 13 }, (_, index) => {
-        const x = index - 4;
-        const y = data * x;
-
+        const x = index;
+        const y = -data + ( ahorroMensual * x );
         return {
+            name: x,
             uv: y,
         };
     });
 
+    console.log('chartData', chartData)
     const gradientOffset = () => {
         const dataMax = Math.max(...chartData.map((i) => i.uv));
         const dataMin = Math.min(...chartData.map((i) => i.uv));
@@ -31,11 +33,11 @@ export const CalculatorChart = ({ data }) => {
         <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={chartData}>
                 <CartesianGrid stroke="none" />
-                <XAxis dataKey="name" label={{ value: 'Años tras la inversion' }} />
+                <XAxis dataKey="name" label={{ value: 'Meses tras la inversion', dy: 12  }} />
                 <YAxis
                     yAxisId="left"
-                    domain={[4000, 80000]}
-                    label={{ value: 'acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dx: -6, dy: 40 }}
+                    domain={[-5000, 25000]}
+                    label={{ value: 'acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dy: 30 }}
                     tickFormatter={(value) => value === 0 ? '0' : `${(Math.round(value / 1000))}k`} // Formats the tick values as "8k" or "0"
                 />
                 <defs>
