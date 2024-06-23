@@ -102,10 +102,10 @@ const BarContainer = ({ title, a, b, footer, flag }) => {
 }
 export const Calculator = () => {
     const [questions, setQuestions] = React.useState([
-        { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 8, desc: '', step: 1 },
-        { text: 'Cuantas estufas electricas tienes', min: 0, max: 20, value: 0, desc: '', step: 10 },
-        { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 50, desc: '', step: 1 },
-        { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 8, desc: '', step: 1 },
+        { text: 'Cuantas estufas tienes', min: 1, max: 20, value: 12, desc: '', step: 1 },
+        { text: 'Cuantas estufas electricas tienes', min: 0, max: 20, value: 8, desc: '', step: 10 },
+        { text: 'Cuantas sillas tienes en la terraza', min: 1, max: 100, value: 80, desc: '', step: 1 },
+        { text: 'Cuantas horas al dia abres la terraza', min: 4, max: 12, value: 10, desc: '', step: 1 },
     ]);
 
 

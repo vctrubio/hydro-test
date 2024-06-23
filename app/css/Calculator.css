@@ -157,6 +157,8 @@
         border: 1px solid black;
         border-radius: 5px;
         margin-top: 1em;
+        letter-spacing: 1px;
+        word-spacing: 2px;
     }
 
     .bar-2chart {
