@@ -55,15 +55,11 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
 };
 
 const BarContainer = ({ title, a, b, footer, flag }) => {
-    const maxValue = 18000; // Maximum value that a.height or b.height can have
-    const maxHeightPx = 400; // Maximum height in pixels
-
-    // Calculate scaling factor
-    const scalingFactor = maxHeightPx / maxValue;
-
-    // Calculate heights in pixels, applying the scaling factor
-    const aHeightPx = Math.min(a.height * scalingFactor, maxHeightPx); // Ensure it does not exceed maxHeightPx
-    const bHeightPx = Math.min(b.height * scalingFactor, maxHeightPx); // Ensure it does not exceed maxHeightPx
+    // bar-container-height = 400px
+    const max = flag === 'huela' ? 18000 : 5600;
+    const unit = max / 300;
+    const aHeightPx = Math.round(a.height / unit * 10); 
+    const bHeightPx = Math.round(b.height / unit); 
 
     return (
         <div className='bar-container'>
@@ -73,15 +69,29 @@ const BarContainer = ({ title, a, b, footer, flag }) => {
                     <div className='bar-content' style={{
                         height: `${aHeightPx}px`,
                         backgroundColor: a.backgroundColor
-                    }}>{Math.round(a.height)}€</div>
-                    <div className='bar-label'>{a.label}</div>
+                    }} />
+                    <div className='bar-label'>
+                        <div>
+                            {a.label}
+                        </div>
+                        <div>
+                        </div>
+                        {Math.round(a.height)}€
+                    </div>
                 </div>
                 <div>
                     <div className='bar-content' style={{
                         height: `${bHeightPx}px`, /* Set height based on value */
                         backgroundColor: b.backgroundColor, /* Green color */
-                    }}>{Math.round(b.height)}€</div>
-                    <div className='bar-label'>{b.label}</div>
+                    }} />
+                    <div className='bar-label'>
+                        <div>
+                            {b.label}
+                        </div>
+                        <div>
+                            {Math.round(b.height)}€
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='bar-footer'>
@@ -110,25 +120,25 @@ export const Calculator = () => {
     const tradicionalA = {
         height: calculateHuellaCo2(questions, "tradicional"),
         backgroundColor: '#3B5463',
-        label: 'Warme',
+        label: 'Tradicional',
     };
 
     const warmeA = {
         height: calculateHuellaCo2(questions, "warme"),
         backgroundColor: '#B8ADAD',
-        label: 'Tradicional',
+        label: 'Warme',
     };
 
     const tradicionalB = {
         height: calculateCost(questions, "tradicional"),
         backgroundColor: '#3B5463',
-        label: 'Warme',
+        label: 'Tradiconal',
     };
 
     const warmeB = {
         height: calculateCost(questions, "warme"),
         backgroundColor: '#B8ADAD',
-        label: 'Tradicional',
+        label: 'Warme',
     };
 
     return (
