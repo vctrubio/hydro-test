@@ -1,11 +1,11 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
-export const CalculatorChart = ({ data, ahorroMensual}) => {
+export const CalculatorChart = ({ data, ahorroMensual }) => {
     console.log('data', data);
     const chartData = Array.from({ length: 13 }, (_, index) => {
         const x = index;
-        const y = -data + ( ahorroMensual * x );
+        const y = -data + (ahorroMensual * x);
         return {
             name: x,
             uv: y,
@@ -33,7 +33,7 @@ export const CalculatorChart = ({ data, ahorroMensual}) => {
         <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={chartData}>
                 <CartesianGrid stroke="none" />
-                <XAxis dataKey="name" label={{ value: 'Meses tras la inversion', dy: 12  }} />
+                <XAxis dataKey="name" label={{ value: 'Meses tras la inversion', dy: 12 }} />
                 <YAxis
                     yAxisId="left"
                     domain={[-5000, 25000]}
@@ -46,7 +46,11 @@ export const CalculatorChart = ({ data, ahorroMensual}) => {
                         <stop offset={off} stopColor="red" stopOpacity={1} />
                     </linearGradient>
                 </defs>
-                <Area type="monotone" dataKey="uv" stroke="#000" fill="url(#splitColor)" yAxisId="left" />
+                <Area type="natural" dataKey="uv" stroke="#555" fill="url(#splitColor)" yAxisId="left"
+                    isAnimationActive={true}
+                    animationBegin={0}
+                    animationDuration={1000}
+                    animationEasing="ease-out" />
             </AreaChart>
         </ResponsiveContainer>
     );
