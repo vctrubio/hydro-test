@@ -8,7 +8,6 @@ export const CalculatorChart = ({ data }) => {
 
         return {
             uv: y,
-            fill: y < 0 ? '#fa0000' : '#82ca9d', // Red for negative values, greenish for non-negative values
         };
     });
 
@@ -33,7 +32,12 @@ export const CalculatorChart = ({ data }) => {
             <AreaChart data={chartData}>
                 <CartesianGrid stroke="none" />
                 <XAxis dataKey="name" label={{ value: 'Años tras la inversion' }} />
-                <YAxis yAxisId="left" domain={['auto', 'auto']} tick={{ fill: '#666666' }} label={{ value: 'acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dx: -6, dy: 40 }} />
+                <YAxis
+                    yAxisId="left"
+                    domain={[4000, 80000]}
+                    label={{ value: 'acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dx: -6, dy: 40 }}
+                    tickFormatter={(value) => value === 0 ? '0' : `${(value / 1000)}k`} // Formats the tick values as "8k" or "0"
+                />
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
                         <stop offset={off} stopColor="green" stopOpacity={1} />
