@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/Calculator.css'
 import { calculateCost, calculateHuellaCo2 } from './CalculatorCalculate'
+import { CalculatorChart } from './CalculatorChart'
 
-const PuntoDeAhorro = () => {
+const PuntoDeAhorro = ({ data }) => {
     return (
         <div style={{ maxWidth: '989px', alignItems: 'center', marginTop: '5em' }}>
             <flex className='punto-ahorro'>
@@ -12,10 +13,8 @@ const PuntoDeAhorro = () => {
                         El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento.
                     </div>
                 </div>
-                <div className='punto-ahorro-graph'>
-                </div>
+                <CalculatorChart data={data} />
             </flex>
-
             <div className='punto-g'>
                 <div className='p-4'>
                     <h5 className='mb-3'>¿Te gustaría saber exactamente cuánto podrías ahorrar con Warme?</h5>
@@ -58,8 +57,8 @@ const BarContainer = ({ title, a, b, footer, flag }) => {
     // bar-container-height = 400px
     const max = flag === 'huela' ? 18000 : 5600;
     const unit = max / 300;
-    const aHeightPx = Math.round(a.height / unit * 10); 
-    const bHeightPx = Math.round(b.height / unit); 
+    const aHeightPx = Math.round(a.height / unit * 10);
+    const bHeightPx = Math.round(b.height / unit);
 
     return (
         <div className='bar-container'>
@@ -117,6 +116,8 @@ export const Calculator = () => {
         });
     };
 
+    const dataLineChart = questions[2].value * 120;
+    
     const tradicionalA = {
         height: calculateHuellaCo2(questions, "tradicional"),
         backgroundColor: '#3B5463',
@@ -169,7 +170,8 @@ export const Calculator = () => {
                 <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
                 <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" />
             </div>
-            <PuntoDeAhorro />
+            <PuntoDeAhorro data={dataLineChart} />
+
         </div>
     )
 }

@@ -81,11 +81,6 @@
     }
 }
 
-.punto-ahorro-graph {
-    width: 85%;
-    border: 1px solid rgb(106, 102, 102);
-}
-
 .punto-g-banner {
     width: 50%;
     background-color: grey;
@@ -215,10 +210,6 @@
     .punto-ahorro>* {
         width: 100%;
         padding: 0 1em;
-    }
-
-    .punto-ahorro-graph {
-        width: 100%;
     }
 
     .punto-g {
