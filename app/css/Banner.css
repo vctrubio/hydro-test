@@ -43,7 +43,7 @@
 
 .banner-desc-info {
     width: 340px;
-
+    margin-left: 1em;
     >p {
         color: black;
         font-size: 1.2em;
@@ -76,13 +76,17 @@
 }
 
 .icon-text {
-    text-align: right;
+    text-align: left;
     align-self: center;
-    padding-right: 10em;
+    font-size: larger;
+    letter-spacing: 2px;
+    width: 350px;
+    display: flex;
+    grid-template-columns: 4fr auto; /* Adjusts to have the first child take two fractions of the space and the rest to auto-adjust */
 }
 
 .icon-text img {
-    margin-right: 0.5em;
+    margin-right: 2em;
 }
 
 

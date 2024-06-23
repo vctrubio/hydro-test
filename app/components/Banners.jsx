@@ -54,11 +54,9 @@ export const BannerDesc = () => {
             </flex>
             <flex className='banner-cartoon'>
                 <div className='margin-up-down'>
-                    <div className="icon-text" style={{ marginRight: '25px' }}>
+                    <div className="icon-text">
                         <img src={logo} alt="Icon" />
-                        <span style={{paddingRight: '16px'}}>
                             Calor bajo demanda
-                        </span>
                     </div>
                     <div className="icon-text">
                         <img src={logo} alt="Icon" />
