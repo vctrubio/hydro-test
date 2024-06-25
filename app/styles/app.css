@@ -142,68 +142,10 @@ aside li {
   transform: translateX(calc(var(--aside-width) * -1));
 }
 
-/*
-* --------------------------------------------------
-* components/Header
-* --------------------------------------------------
-*/
 a {
   text-decoration: none !important; /* Important to override Bootstrap */
 }
 
-
-.header {
-  align-items: center;
-  background: #fff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  height: var(--header-height);
-  padding: 0 1rem;
-  /* position: sticky; */
-  top: 0;
-  z-index: 1;
-}
-
-.header-menu-mobile-toggle {
-  /* @media (min-width: 48em) {
-    display: none;
-  } */
-}
-
-.header-menu-mobile {
-  display: flex;
-  flex-direction: column;
-  grid-gap: 1rem;
-}
-
-.header-menu-desktop {
-  /* display: none; */
-  grid-gap: 1rem;
-
-  @media (min-width: 45em) {
-    display: flex;
-    grid-gap: 1rem;
-    margin-left: 3rem;
-  }
-}
-
-.header-menu-item {
-  cursor: pointer;
-}
-
-.header-menu-item:hover {
-  text-decoration: none;
-  transform: scale(1.2);
-}
-
-.header-ctas {
-  align-items: center;
-  display: flex;
-  grid-gap: 1rem;
-  margin-left: auto;
-}
 
 /*
 * --------------------------------------------------

@@ -22,9 +22,9 @@ export default function Homepage() {
     <div style={{width: '100vw'}}>
       <BannerPhoto/>
       <BannerDesc/>
-      <Calculator/>
+      {/* <Calculator/>
       <RenderProposal/>
-      <ContactForm/>
+      <ContactForm/> */}
       <Faq/>
     </div>
   );

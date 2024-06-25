@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { Await, NavLink } from '@remix-run/react';
 import { useAnalytics } from '@shopify/hydrogen';
 import { useAside } from '~/components/Aside';
-
+import logo from '~/assets/warme_logo.png';
+import '../css/Header.css';
 
 const LanguageBarrier = () => {
   return (
@@ -22,7 +23,7 @@ export function Header({ header, isLoggedIn, cart, publicStoreDomain }) {
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        <img src={logo} alt="Warme" style={{width: 80}}/>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -31,8 +32,6 @@ export function Header({ header, isLoggedIn, cart, publicStoreDomain }) {
         publicStoreDomain={publicStoreDomain}
       />
       <div></div>
-      {/* <LanguageBarrier /> */}
-      {/* <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} /> */}
     </header>
   );
 }
@@ -51,6 +50,7 @@ export function HeaderMenu({
   viewport,
   publicStoreDomain,
 }) {
+  console.log('viewport', viewport) //mobile and desktop
   const className = `header-menu-${viewport}`;
 
   function closeAside(event) {
