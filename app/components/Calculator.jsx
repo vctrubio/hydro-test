@@ -177,10 +177,9 @@ export const Calculator = () => {
                     *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
                     quemadores de gas de 12 kWh y un precio de la <br />energía de 3€ por kWh.
                 </div>
-                {/* <SaberMas /> */}
             </div>
             <div className='bar-container-head'>
-                <div className='d-flex'>
+                <div className='d-flex flex-column flex-start'>
                     <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
                     <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
                 </div>

@@ -20,12 +20,12 @@ export async function loader(args) {
 export default function Homepage() {
   return (
     <div style={{width: '100vw'}}>
-      <BannerPhoto/>
-      <BannerDesc/>
-      {/* <Calculator/> */}
-      <RenderProposal/>
-      <ContactForm/>
-      <Faq/>
+      {/* <BannerPhoto/> */}
+      {/* <BannerDesc/> */}
+      <Calculator/>
+      {/* <RenderProposal/> */}
+      {/* <ContactForm/> */}
+      {/* <Faq/> */}
     </div>
   );
 }
