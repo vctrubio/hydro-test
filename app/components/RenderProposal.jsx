@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+/*UTILS*/
 async function fetchJsonFile() {
     try {
         const response = await fetch('/PillowTelaConfig.json');
@@ -272,7 +273,7 @@ const Fabric = ({ data }) => {
                             <div className='render-row ' key={key}>
                                 {key}
                             </div>
-                            <div className='d-flex'>
+                            <div className='render-card-container'>
                                 {Object.entries(value).sort((a, b) => a[1].localeCompare(b[1])).map(([subKey, subValue]) => {
                                     return (
                                         <div className='render-card'>
@@ -373,7 +374,7 @@ export const RenderProposal = () => {
 
     return (
         <div className='d-flex justify-content-center align-items-center flex-column'>
-            <RenderWrapper data={pillowDataConfig} />
+            {/* <RenderWrapper data={pillowDataConfig} /> */}
             <RenderBar data={pillowDataConfig} />
         </div>
     )

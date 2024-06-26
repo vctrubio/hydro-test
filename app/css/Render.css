@@ -40,6 +40,13 @@
     font-weight: 00;
 }
 
+.render-card-container{
+    display: flex;
+    width: 75vw;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
 .render-card{
     display: flex;
     flex-direction: column;
@@ -76,6 +83,7 @@
     flex-direction: row;
     gap: 2em;
     margin-bottom: 1.5em;
+    text-align: center;
     >*{
         border-radius: 20px;
         padding: 5px 20px;
@@ -130,3 +138,16 @@
 .render-dropdown-content div:hover {background-color: #ddd;}
 
 .render-dropdown:hover .render-dropdown-content {display: block;}
+
+@media screen and (max-width: 989px){
+    .render-navbar{
+        padding: 0 1em;
+        gap: 1em;
+    }
+    .render-card-container{
+        width: 90vw;
+        /* can be removed if needed. to confirm
+        height: 350px;
+        overflow-y: scroll;  */
+    }
+}
