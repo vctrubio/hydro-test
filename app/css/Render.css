@@ -143,6 +143,11 @@
 @media screen and (max-width: 1300px){
     .render-container{
         flex-direction: column;
+        border: 1px solid black;
+        /* height: 100%; */ /* BUG TO FIX */
+    }
+    .render-navbar{
+        margin-top: 2em;
     }
 }
 @media screen and (max-width: 989px){

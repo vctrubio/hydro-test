@@ -375,7 +375,7 @@ export const RenderProposal = () => {
     return (
         <div className='d-flex justify-content-center align-items-center flex-column'>
             <RenderWrapper data={pillowDataConfig} />
-            {/* <RenderBar data={pillowDataConfig} /> */}
+            <RenderBar data={pillowDataConfig} />
         </div>
     )
 }
