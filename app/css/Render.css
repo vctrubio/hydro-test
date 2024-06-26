@@ -17,6 +17,7 @@
     }
 }
 
+
 .render-title{
     text-align: left;
     margin-bottom: 1.5em;
@@ -139,6 +140,11 @@
 
 .render-dropdown:hover .render-dropdown-content {display: block;}
 
+@media screen and (max-width: 1300px){
+    .render-container{
+        flex-direction: column;
+    }
+}
 @media screen and (max-width: 989px){
     .render-navbar{
         padding: 0 1em;
@@ -150,4 +156,5 @@
         height: 350px;
         overflow-y: scroll;  */
     }
+
 }
