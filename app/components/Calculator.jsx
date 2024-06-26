@@ -5,7 +5,7 @@ import { CalculatorChart } from './CalculatorChart'
 
 const PuntoDeAhorro = ({ data, ahorroMensual }) => {
     return (
-        <div style={{ maxWidth: '989px', alignItems: 'center', marginTop: '0em'}}>
+        <div style={{ maxWidth: '70vw', alignItems: 'center', marginTop: '0em' }}>
             <flex className='punto-ahorro'>
                 <div>
                     <h1 >El punto de amortización</h1>
@@ -61,7 +61,7 @@ const SaberMas = () => {
 const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensual }) => {
     // bar-container-height = 400px
     const max = flag === 'huela' ? 18000 : 5600;
-    const unit = max / 300;
+    const unit = max / 250;
     const aHeightPx = Math.round(a.height / unit * 10);
     const bHeightPx = Math.round(b.height / unit);
 
@@ -73,7 +73,11 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
 
     return (
         <div className='bar-container'>
-            <div className='bar-title' style={{ fontWeight: 'bold' }}>{title}</div>
+            <div className='bar-title' style={{ fontWeight: 'bold', paddingTop: '1em', paddingLeft: '3em' }}>{title}
+                {'     '}
+                {/* <div className='bar-footer'> */}
+                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
+            </div>
             <div className='bar-2chart'>
                 <div className='d-flex flex-column align-end'>
                     <div className='bar-content' style={{
@@ -104,9 +108,7 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
                     </div>
                 </div>
             </div>
-            <div className='bar-footer'>
-                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
-            </div>
+
         </div>
     );
 }
@@ -154,7 +156,7 @@ export const Calculator = () => {
     };
 
     return (<>
-        <h1 style={{ marginBottom: '2em', textAlign: 'center' }}>Calcula tu ahorro cambiándote a Warme</h1>
+        <h1 style={{ marginBottom: '.5em', textAlign: 'center' }}>Calcula tu ahorro cambiándote a Warme</h1>
 
         <div className='calculator'>
             <div className='calculator-mb'>
@@ -180,8 +182,8 @@ export const Calculator = () => {
             </div>
             <div className='bar-container-head'>
                 <div className='d-flex flex-column flex-start'>
-                    <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
                     <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
+                    <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
                 </div>
             </div>
         </div>
