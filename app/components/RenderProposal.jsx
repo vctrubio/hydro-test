@@ -124,7 +124,9 @@ const RenderView = ({ selectedColor }) => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         // renderer.setClearColor(0xeeeeee, 0.5); // 0xeeeeee is light gray in hexadecimal
-        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight - 100);
+        const rendererHeight = 500; // Example: 500 pixels
+        
+        renderer.setSize(mountRef.current.clientWidth, rendererHeight);
         mountRef.current.appendChild(renderer.domElement);
 
 
