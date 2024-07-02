@@ -5,7 +5,7 @@ import { CalculatorChart } from './CalculatorChart'
 
 const PuntoDeAhorro = ({ data, ahorroMensual }) => {
     return (
-        <div style={{ maxWidth: '70vw', alignItems: 'center', marginTop: '0em' }}>
+        <div style={{ maxWidth: '75vw', alignItems: 'center', marginTop: '0em' }}>
             <flex className='punto-ahorro'>
                 <div>
                     <h1 >El punto de amortización</h1>
@@ -59,9 +59,8 @@ const SaberMas = () => {
 }
 
 const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensual }) => {
-    // bar-container-height = 400px
     const max = flag === 'huela' ? 18000 : 5600;
-    const unit = max / 250;
+    const unit = max / 150;
     const aHeightPx = Math.round(a.height / unit * 10);
     const bHeightPx = Math.round(b.height / unit);
 
@@ -73,10 +72,10 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
 
     return (
         <div className='bar-container'>
-            <div className='bar-title' style={{ fontWeight: 'bold', paddingTop: '1em', paddingLeft: '3em' }}>{title}
-                {'     '}
-                {/* <div className='bar-footer'> */}
-                {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
+            <div className='bar-title flex-column' style={{ fontWeight: 'bold', padding: '5px 0 !important' }}>{title}
+                <div className='bar-title-number'>
+                    {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
+                </div>
             </div>
             <div className='bar-2chart'>
                 <div className='d-flex flex-column align-end'>
@@ -176,14 +175,13 @@ export const Calculator = () => {
                     </div>
                 </div>
                 <div className='calculator-footer'>
-                    *Los cálculos se basan en lámparas de calor de 1,5 kWh,<br />
-                    quemadores de gas de 12 kWh y un precio de la <br />energía de 3€ por kWh.
+                    *Los cálculos se basan en lámparas de calor de 1,5 kWh, quemadores de gas de 12 kWh <br/> y un precio de la energía de 3€ por kWh.
                 </div>
             </div>
             <div className='bar-container-head'>
                 <div className='d-flex flex-column flex-start'>
-                    <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€ (mes)'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
-                    <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2 (mes)'} flag="huela" />
+                    <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€/mes'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
+                    <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2/mes'} flag="huela" />
                 </div>
             </div>
         </div>
