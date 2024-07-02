@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Await, NavLink } from '@remix-run/react';
 import { useAnalytics } from '@shopify/hydrogen';
 import { useAside } from '~/components/Aside';
@@ -7,12 +7,53 @@ import '../css/Header.css';
 
 const LanguageBarrier = () => {
   return (
-    <flex style={{gap: '.2em'}}>
-      <div style={{cursor: 'pointer'}}>🇪🇸</div>
-      <div style={{cursor: 'pointer'}}>🇺🇸</div>
+    <flex style={{ gap: '.2em' }}>
+      <div style={{ cursor: 'pointer' }}>🇪🇸</div>
+      <div style={{ cursor: 'pointer' }}>🇺🇸</div>
     </flex>
   );
 };
+
+const HeaderDropdownMenu = (primaryDomainUrl, publicStoreDomain) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  return (
+    <div className='header-burger'>
+      <button className='header-menu-btn' onClick={toggleDropdown}>Menu</button>
+      {isOpen && (
+        <div className='header-dropdown-content'>
+          {MY_MENU.items.map((item) => {
+            if (!item.url) return null;
+
+            const url =
+              item.url.includes('myshopify.com') ||
+              item.url.includes(publicStoreDomain) ||
+              item.url.includes(primaryDomainUrl)
+                ? new URL(item.url).pathname
+                : item.url;
+            return (
+              <NavLink
+                className="header-menu-dropdown-item"
+                end
+                key={item.id}
+                onClick={() => {
+                  setIsOpen(false); // Close dropdown when an item is clicked
+                  closeAside(); // Assuming closeAside is a function to handle additional logic
+                }}
+                prefetch="intent"
+                style={activeLinkStyle} // Make sure activeLinkStyle is defined
+                to={url}
+              >
+                {item.title}
+              </NavLink>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 /**
  * @param {HeaderProps}
@@ -23,15 +64,20 @@ export function Header({ header, isLoggedIn, cart, publicStoreDomain }) {
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <img src={logo} alt="Warme" style={{width: 80}}/>
+        <img src={logo} alt="Warme" style={{ width: 100}} />
       </NavLink>
+      <HeaderDropdownMenu
+        menu={menu}
+        primaryDomainUrl={header.shop.primaryDomain.url}
+        publicStoreDomain={publicStoreDomain}
+      />
       <HeaderMenu
         menu={menu}
         viewport="desktop"
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
       />
-      <div></div>
+      <div className='header-hide'></div>
     </header>
   );
 }
@@ -50,8 +96,8 @@ export function HeaderMenu({
   viewport,
   publicStoreDomain,
 }) {
-  console.log('viewport', viewport) //mobile and desktop
-  const className = `header-menu-${viewport}`;
+  // const className = `header-menu-${viewport}`;
+  const className = `header-menu-`;
 
   function closeAside(event) {
     if (viewport === 'mobile') {
@@ -59,19 +105,9 @@ export function HeaderMenu({
       window.location.href = event.currentTarget.href;
     }
   }
+
   return (
-    <div className={className} role="navigation">
-      {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={closeAside}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          Home
-        </NavLink>
-      )}
+    <div className="header-menu-" role="navigation">
       {MY_MENU.items.map((item) => {
         if (!item.url) return null;
 

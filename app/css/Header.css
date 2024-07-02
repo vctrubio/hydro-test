@@ -1,51 +1,108 @@
-
 .header {
-    align-items: center;
-    background: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: var(--header-height);
-    padding: 0 1rem;
-    top: 0;
-    z-index: 1;
+  align-items: center;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 1rem;
+  top: 0;
+  z-index: 1;
+}
+
+.header-menu-mobile {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.header-menu-desktop {
+  grid-gap: 2rem;
+}
+
+.header-menu-item {
+  cursor: pointer;
+  margin: 0 1em;
+}
+
+.header-menu-{
+  grid-gap: 2rem;
+}
+
+.header-menu-item:hover {
+  text-decoration: none;
+}
+
+.header-ctas {
+  align-items: center;
+  display: flex;
+  grid-gap: 1rem;
+  margin-left: auto;
+}
+
+.header-burger{
+  display: none;
+  position: relative;
+}
+
+.header-burger button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+}
+
+.header-burger button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+}
+
+.header-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateX(2.7%);
+  background-color: antiquewhite;
+  width: 100vw; /* Set width to 100vw */
+  z-index: 1;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.header-menu-dropdown-item {
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(142, 115, 115);
+  padding: 1rem 1rem;
+  text-align: right; /* Align text to the right */
+}
+
+.header-menu-dropdown-item:hover {
+  background-color: #ddd;
+}
+
+.header-menu-btn{
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  /* Add your CSS rules for screens with a maximum width of 600px here */
+  .header-burger {
+    display: block;
   }
-  
-  .header-menu-mobile-toggle {
-    /* @media (min-width: 48em) {
-      display: none;
-    } */
+  .header-menu-{
+    display: none;
   }
-  
-  .header-menu-mobile {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 1rem;
+  .header-hide{
+    display: none;
   }
-  
-  .header-menu-desktop {
-    /* display: none; */
-    grid-gap: 2rem;
-    @media (min-width: 45em) {
-      display: flex;
-      grid-gap: 1rem;
-      margin-left: 3rem;
-    }
+  .header{
+    justify-content: space-between;
   }
-  
-  .header-menu-item {
-    cursor: pointer;
-  }
-  
-  .header-menu-item:hover {
-    text-decoration: none;
-  }
-  
-  .header-ctas {
-    align-items: center;
-    display: flex;
-    grid-gap: 1rem;
-    margin-left: auto;
-  }
-  
+}
