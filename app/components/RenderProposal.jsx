@@ -315,7 +315,7 @@ const Specifications = () => {
 const RenderBar = ({ data }) => {
     const TitleEnum = Object.freeze({
         A: 'Fabric',
-        B: 'How does it Work?',
+        B: 'How Does It Work?',
         C: 'Specifications'
     });
 

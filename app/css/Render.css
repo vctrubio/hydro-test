@@ -1,6 +1,9 @@
 .render-container {
-    height: 72vh;
+    /* min-height: 72vh;
+    max-height: 72vh; */
     width: 80vw;
+    /* border: 1px solid black; */
+    margin-bottom: 2em;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,6 +20,9 @@
     }
 }
 
+.render-view{
+    /* border: 1px solid black; */
+}
 
 .render-title{
     text-align: left;
@@ -143,23 +149,21 @@
 @media screen and (max-width: 1300px){
     .render-container{
         flex-direction: column;
-        border: 1px solid black;
-        /* height: 100%; */ /* BUG TO FIX */
+        height: 95vh;
+        /* BUG TO FIX */
     }
     .render-navbar{
         margin-top: 2em;
     }
 }
+
 @media screen and (max-width: 989px){
     .render-navbar{
         padding: 0 1em;
         gap: 1em;
     }
     .render-card-container{
-        width: 90vw;
-        /* can be removed if needed. to confirm
-        height: 350px;
-        overflow-y: scroll;  */
+        width: 80vw;
     }
 
 }
