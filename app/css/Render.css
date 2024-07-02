@@ -150,7 +150,6 @@
     .render-container{
         flex-direction: column;
         height: 95vh;
-        /* BUG TO FIX */
     }
     .render-navbar{
         margin-top: 2em;
