@@ -60,7 +60,7 @@ const SaberMas = () => {
 
 const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensual }) => {
     const max = flag === 'huela' ? 18000 : 5600;
-    const unit = max / 150;
+    const unit = max / 200; //change this for the scale
     const aHeightPx = Math.round(a.height / unit * 10);
     const bHeightPx = Math.round(b.height / unit);
 
@@ -72,33 +72,17 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
 
     return (
         <div className='bar-container'>
-            <div className='bar-title flex-column' style={{ fontWeight: 'bold', padding: '5px 0 !important' }}>{title}
-                <div className='bar-title-number'>
-                    {flag === 'huela' ? `${Math.round(a.height - b.height)}` : `+${ahorroMensual}`} {footer}
-                </div>
+            <div className='bar-title'>{title}
             </div>
-            <div className='bar-2chart'>
-                <div className='d-flex flex-column align-end'>
+
+                <div className='bar-24chart'>
                     <div className='bar-content' style={{
-                        height: `${aHeightPx}px`,
-                        backgroundColor: a.backgroundColor
+                        width: `${bHeightPx}px`,
+                        height: 40,
+                        backgroundColor: b.backgroundColor,
                     }} />
                     <div className='bar-label'>
-                        <div>
-                            {a.label}
-                        </div>
-                        <div>
-                        </div>
-                        {Math.round(a.height)}€
-                    </div>
-                </div>
-                <div>
-                    <div className='bar-content' style={{
-                        height: `${bHeightPx}px`, /* Set height based on value */
-                        backgroundColor: b.backgroundColor, /* Green color */
-                    }} />
-                    <div className='bar-label'>
-                        <div>
+                        <div style={{ fontWeight: 'bold' }}>
                             {b.label}
                         </div>
                         <div>
@@ -106,7 +90,22 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div className='bar-24chart'>
+                    <div className='bar-content' style={{
+                        width: `${aHeightPx}px`,
+                        height: 40,
+                        backgroundColor: a.backgroundColor,
+                    }} />
+                    <div className='bar-label'>
+                        <div style={{ fontWeight: 'bold' }}>
+                            {a.label}
+                        </div>
+                        <div>
+                            {Math.round(a.height)}€
+                        </div>
+                    </div>
+                </div>
 
         </div>
     );
@@ -132,31 +131,31 @@ export const Calculator = () => {
 
     const tradicionalA = {
         height: calculateHuellaCo2(questions, "tradicional"),
-        backgroundColor: '#3E467A',
+        backgroundColor: '#FCEADC',
         label: 'Tradicional',
     };
 
     const warmeA = {
         height: calculateHuellaCo2(questions, "warme"),
-        backgroundColor: '#FAAA87',
+        backgroundColor: '#F6FAE0',
         label: 'Warme',
     };
 
     const tradicionalB = {
         height: calculateCost(questions, "tradicional"),
-        backgroundColor: '#3E467A',
+        backgroundColor: '#FCEADC',
         label: 'Tradiconal',
     };
 
     const warmeB = {
         height: calculateCost(questions, "warme"),
-        backgroundColor: '#FAAA87',
+        backgroundColor: '#F6FAE0',
         label: 'Warme',
     };
 
     return (
         <div className='calculator-container'>
-            <h1 style={{ marginBottom: '.5em', textAlign: 'center' }}>Calcula tu ahorro <br/>cambiándote a Warme</h1>
+            <h1 style={{ marginBottom: '.5em', textAlign: 'center' }}>Calcula tu ahorro <br />cambiándote a Warme</h1>
             <div className='calculator'>
                 <div className='calculator-qs'>
                     {questions.map((question, index) => (
@@ -172,12 +171,10 @@ export const Calculator = () => {
                     ))}
                 </div>
 
-                {/* <div className='bar-container-head'>
-                <div className='d-flex flex-column flex-start'>
-                    <BarContainer title='Gastos Economicos' a={warmeB} b={tradicionalB} footer={'€/mes'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
-                    <BarContainer title='Huela Co2' a={warmeA} b={tradicionalA} footer={'KG/Co2/mes'} flag="huela" />
+                <div className='bar-container-head'>
+                    <BarContainer title='COMPARATIVA - EMISIONES' a={warmeB} b={tradicionalB} footer={'€/mes'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
+                    <BarContainer title='COMPARATIVA - PRECIO' a={warmeA} b={tradicionalA} footer={'KG/Co2/mes'} flag="huela" />
                 </div>
-            </div> */}
 
             </div>
             {/* <div className='d-flex flex-column justify-content-center align-items-center'>
