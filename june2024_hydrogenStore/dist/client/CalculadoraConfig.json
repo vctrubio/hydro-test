@@ -1,0 +1,9 @@
+{
+  "Precio bombona euros/kg": 1,
+  "Precio luz euros/kw": 0.12,
+  "Huella carbono bombona kg/h": 3,
+  "Huella carbono luz kg/h": 0.5,
+  "Consumo Warme kw/h": 0.04,
+  "Consumo bombona kg/h": 1,
+  "Consumo estufa electrica kw/h": 1.5
+}

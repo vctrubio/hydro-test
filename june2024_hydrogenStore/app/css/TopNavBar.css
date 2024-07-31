@@ -1,0 +1,9 @@
+.top-nav-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; /* Center on Y */
+    
+    height: 2.5em;
+    width: 100%;
+    background-color: var(--color-primary);
+}

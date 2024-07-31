@@ -1,0 +1,9 @@
+{
+    "Hopsak": ["897-white-cherris", "2-white", "3-white"],
+    "Base DSW, DAW": ["2-white", "3-white", "897-white-cherris", "1-green", "023-red-and-sexy-red-again-red"],
+    "Base DSR, DAR": ["897-white-cherris", "2-white", "3-white", "not-found"],
+    "Tela4": ["2-white", "3-white", "023-red-and-sexy-red-again-red", "1-white", "1-green", "897-white-cherris", "not found", "not found2", "not found 4", "last bubt not least", "again not for houy", "if i weres a boy", "fire again", "angle", "morgane", "lefranocois"],
+    "DEFAULT": {
+        "Hopsak": "897-white-cherris"
+    }
+}

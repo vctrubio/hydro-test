@@ -1,0 +1,115 @@
+@import './index.css';
+
+.banner-photo {
+    width: 100%;
+    height: 92vh;
+    object-fit: cover;
+    object-position: center;
+    color: white;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    
+    /* background-image: url('../assets/backgroundBanner/A.jpg'); */
+    background-size: cover;
+    background-position: center;
+
+    h1{
+        font-size: 3.3em;
+    }
+}
+
+.banner-desc {
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    >div:not(:last-child) {
+        margin-left: 2em;
+        margin-right: 2em;
+        margin-bottom: 2em;
+        margin-top: 2em;
+    }
+}
+
+.banner-desc-photo {
+    height: 420px;
+    width: 380px;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    border-radius: 15px;
+}
+
+.banner-desc-info {
+    width: 340px;
+    margin-left: 1em;
+    >p {
+        color: black;
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+
+    >* {
+        margin-bottom: .5em;
+        line-height: 1.2;
+    }
+}
+
+.banner-cartoon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #666666;
+    width: 100%;
+    height: 450px;
+    gap: 2em;
+    margin-bottom: 8em;
+    /* border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px; */
+}
+
+.banner-cartoon-photo {
+    height: 100%;
+    width: 50vw;
+    background-color: rgb(207, 194, 176);
+    /* border-radius: 15px; */
+}
+
+.icon-text {
+    text-align: left;
+    align-self: center;
+    font-size: larger;
+    letter-spacing: 2px;
+    width: 350px;
+    display: flex;
+    grid-template-columns: 4fr auto; /* Adjusts to have the first child take two fractions of the space and the rest to auto-adjust */
+}
+
+.icon-text img {
+    margin-right: 2em;
+}
+
+
+.margin-up-down {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    >* {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-cartoon-photo {
+        display: none;
+    }
+
+    .margin-up-down {
+        width: 100vw;
+    }
+    .icon-text{
+        padding: 0;
+    }
+}

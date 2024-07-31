@@ -1,0 +1,245 @@
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+    margin-top: 2em;
+    gap: 10px;
+
+    >* {
+        /* border: 1px solid black; */
+    }
+}
+
+
+.calculator-question-units {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    height: 65px;
+    >* {
+        align-self: center;
+    }
+}
+
+.calculator-qs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 80px;
+    row-gap: 20px;
+    padding: 1em;
+    margin: 0 1em;
+}
+
+.calculator-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: .5em;
+    font-size: 12px;
+}
+
+.calculator-qq {
+    font-size: 1.4em;
+    width: 100%;
+}
+
+/* // */
+.punto-ahorro {
+    gap: 2em;
+    background-color: rgb(146, 178, 90);
+    border-radius: 2px;
+    margin: 1em 0;
+    padding: 2em;
+    min-height: 420px;
+    border-radius: 5px;
+
+    >* {
+        padding: 0 1em;
+        width: 50%;
+    }
+}
+
+.punto-g {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    width: 70%;
+    margin: auto;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 1em;
+    margin-bottom: 8em;
+
+    >* {
+        width: 50%;
+    }
+}
+
+.punto-g-banner {
+    width: 50%;
+    background-color: grey;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* // */
+.slider-target {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 180px;
+    border: 1px solid rgb(187, 179, 179);
+    margin-bottom: 2px;
+    border-radius: 2px;
+    padding: 0 0.1em;
+}
+
+.slider {
+    width: 80%;
+    margin-right: 2em;
+}
+
+
+/* // */
+.bar-container-head {
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-container {
+    --width-container: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 180px;
+    width: var(--width-container);
+    text-align: center;
+    align-self: center;
+    margin-bottom: 1.5em;
+
+    .bar-title,
+    .bar-label {
+        font-size: 14px;
+        margin-bottom: .5em;
+        text-align: left;
+        padding-left: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 .8em;
+        display: flex;
+    }
+
+    .bar-title-number {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: grey;
+        z-index: 1;
+    }
+
+    .bar-footer {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        background-color: none;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 1em;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+    }
+
+    .bar-2chart {
+        flex: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: end;
+        min-height: 120px;
+
+        >*>* {
+            border-radius: 6px;
+        }
+    }
+
+    .bar-content {
+        width: calc(var(--width-container) / 2);
+        padding-top: 5px;
+        margin: 0 .2em;
+    }
+}
+
+
+@media (max-width: 869px) {
+    .calculator-qs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
+
+    .calculator-mb {
+        margin-bottom: 2em;
+    }
+
+    .calculator-question {
+        width: 90%;
+    }
+
+    .calculator-footer {
+        padding: 0 2em;
+    }
+
+    .punto-g {
+        flex-direction: column;
+    }
+
+    .punto-g {
+        width: 70%;
+
+        >* {
+            width: 100%;
+        }
+    }
+
+    .punto-ahorro {
+        >* {
+            width: 100%;
+        }
+    }
+
+    .punto-g-banner {
+        height: 300px;
+    }
+
+    .bar-container {
+        --width-container: 75vw;
+
+        .bar-content {
+            width: calc(var(--width-container) / 2 - 25px);
+        }
+    }
+
+    .bar-container-head {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+}

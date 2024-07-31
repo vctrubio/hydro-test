@@ -1,0 +1,33 @@
+.faq {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Add this line */
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+}
+
+
+.faq-question {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.faq-item {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    font-size: 1.2em;
+}
+
+.faq-item.show {
+    max-height: 100px;
+    /* Adjust this value as needed */
+}
