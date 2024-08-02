@@ -53,7 +53,7 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
                 />
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={gradientOffset()} stopColor="green" stopOpacity={1} />
+                        <stop offset={gradientOffset()} stopColor="#FCEADC" stopOpacity={1} />
                         <stop offset={gradientOffset()} stopColor="red" stopOpacity={1} />
                     </linearGradient>
                 </defs>
