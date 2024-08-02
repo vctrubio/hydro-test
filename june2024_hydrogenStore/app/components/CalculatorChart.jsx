@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 
 export const CalculatorChart = ({ data, ahorroMensual }) => {
-    console.log('data', data);
+
     const chartData = Array.from({ length: 13 }, (_, index) => {
         const x = index;
         const y = -data + (ahorroMensual * x);
@@ -11,8 +11,16 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
             uv: y,
         };
     });
+    const puntoAhoro = chartData.find((item) => item.uv >= 0);
 
-    console.log('chartData', chartData)
+    useEffect(() => {
+        if (puntoAhoro) {
+            console.log('Punto de amortiguation:', puntoAhoro.name);
+        }
+    }, [chartData]);
+
+    // console.log('chartData', chartData)
+
     const gradientOffset = () => {
         const dataMax = Math.max(...chartData.map((i) => i.uv));
         const dataMin = Math.min(...chartData.map((i) => i.uv));
@@ -23,14 +31,11 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
         if (dataMin >= 0) {
             return 1;
         }
-
         return dataMax / (dataMax - dataMin);
     };
 
-    const off = gradientOffset();
-
     const customTickFormatter = (value, index) => {
-        return index % 4 === 0 ? value : '';
+        return value === puntoAhoro.name ? value : '';
     };
 
     return (
@@ -48,8 +53,8 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
                 />
                 <defs>
                     <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset={off} stopColor="green" stopOpacity={1} />
-                        <stop offset={off} stopColor="red" stopOpacity={1} />
+                        <stop offset={gradientOffset()} stopColor="green" stopOpacity={1} />
+                        <stop offset={gradientOffset()} stopColor="red" stopOpacity={1} />
                     </linearGradient>
                 </defs>
                 <Area type="natural" dataKey="uv" stroke="#555" fill="url(#splitColor)" yAxisId="left"
@@ -58,6 +63,7 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
                     animationDuration={1000}
                     animationEasing="ease-out" />
             </AreaChart>
+            
         </ResponsiveContainer>
     );
 };
