@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-D2HyDbKh.js";import{u as r,L as t}from"./components--oc4anGP.js";function a(){const{policies:s}=r();return e.jsxs("div",{className:"policies",children:[e.jsx("h1",{children:"Policies"}),e.jsx("div",{children:s.map(i=>i?e.jsx("fieldset",{children:e.jsx(t,{to:`/policies/${i.handle}`,children:i.title})},i.id):null)})]})}export{a as default};
