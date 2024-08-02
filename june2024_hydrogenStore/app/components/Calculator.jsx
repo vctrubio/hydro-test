@@ -5,16 +5,13 @@ import { CalculatorChart } from './CalculatorChart'
 
 const PuntoDeAhorro = ({ data, ahorroMensual }) => {
     return (
-        <div style={{ maxWidth: '75vw', alignItems: 'center', marginTop: '0em' }}>
-            <flex className='punto-ahorro'>
-                <div>
-                    <h1 >El punto de amortización</h1>
-                    <div style={{ lineHeight: '1.8rem' }}>
-                        El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento.
-                    </div>
-                </div>
+        <div>
+            <div className='punto-ahorro'>
                 <CalculatorChart data={data} ahorroMensual={ahorroMensual} />
-            </flex>
+                <div style={{ marginTop: 10, lineHeight: '1.4rem' }}>
+                    El punto de amortización nos indica un calculo aproximado del tiempo que se tardaría en recuperar la inversión de transitar a Warme, y viene dado por el número de asientos calefactables y la eficiencia energética de cada establecimiento.
+                </div>
+            </div>
         </div>
     )
 }
@@ -83,7 +80,7 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
                     <div style={{ fontWeight: 'bold' }}>
                         {b.label}
                     </div>
-                    <div style={{opacity: 0.5, fontSize: '1.2em'}}>
+                    <div style={{ opacity: 0.5, fontSize: '1.2em' }}>
                         (
                         {Math.round(b.height)}
                         {flag == 'huela' ?
@@ -105,7 +102,7 @@ const BarContainer = ({ title, a, b, footer, flag, ahorroMensual, setAhorroMensu
                     <div style={{ fontWeight: 'bold' }}>
                         {a.label}
                     </div>
-                    <div style={{opacity: 0.5, fontSize: '1.2em'}}>
+                    <div style={{ opacity: 0.5, fontSize: '1.2em' }}>
                         (
                         {Math.round(b.height)}
                         {flag == 'huela' ?
@@ -196,16 +193,14 @@ export const Calculator = () => {
                 <div className='bar-container-head'>
                     <BarContainer title='COMPARATIVA - EMISIONES' a={warmeB} b={tradicionalB} footer={'Kg C02 emitidos /año'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
                     <BarContainer title='COMPARATIVA - PRECIO' a={warmeA} b={tradicionalA} footer={'€ ahorrados / año'} flag="huela" />
+                    <PuntoDeAhorro data={dataLineChart} ahorroMensual={ahorroMensual} />
                     {/* to do is get the numbers in the right orger */}
                 </div>
 
 
 
             </div>
-            {/* <div className='d-flex flex-column justify-content-center align-items-center'>
-            <PuntoDeAhorro data={dataLineChart} ahorroMensual={ahorroMensual} />
-            <SaberMas />
-        </div> */}
+            {/* <SaberMas /> */}
 
         </div>
     )

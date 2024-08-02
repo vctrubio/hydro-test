@@ -29,11 +29,17 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
 
     const off = gradientOffset();
 
+    const customTickFormatter = (value, index) => {
+        return index % 4 === 0 ? value : '';
+    };
+
     return (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={260}>
             <AreaChart data={chartData}>
                 <CartesianGrid stroke="none" />
-                <XAxis dataKey="name" label={{ value: 'Meses tras la inversion', dy: 12 }} />
+                <XAxis dataKey="name" label={{ value: 'Meses tras la inversion', dy: 12 }}
+                    tickFormatter={customTickFormatter}
+                />
                 <YAxis
                     yAxisId="left"
                     domain={[-5000, 25000]}
