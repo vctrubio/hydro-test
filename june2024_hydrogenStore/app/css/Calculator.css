@@ -200,11 +200,6 @@
     }
 
     .punto-g {
-        flex-direction: column;
-    }
-
-    
-    .punto-g {
         width: 70%;
 
         >* {
