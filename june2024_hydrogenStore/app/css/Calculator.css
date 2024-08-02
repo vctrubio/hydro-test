@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: left;
-    margin-top: 2em;
+    margin: auto;
     gap: 10px;
 }
 
@@ -20,11 +20,7 @@
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    /* justify-content: flex-start; */
     height: 65px;
-    width: 500px;
-    /* border: 1px solid rgb(208, 195, 195); */
-
     >* {
         align-self: center;
     }
@@ -36,7 +32,6 @@
     column-gap: 60px;
     row-gap: 20px;
     padding: 1em;
-    margin: 0 1em;
 }
 
 .calculator-footer {
@@ -85,12 +80,13 @@
 }
 
 /* // */
+
 .slider-target {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
-    width: 180px;
+    width: 120px;
     border: 1px solid rgb(187, 179, 179);
     margin-bottom: 2px;
     border-radius: 2px;
@@ -113,23 +109,22 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    height: 180px;
     width: var(--width-container);
     text-align: center;
     align-self: stretch;
     margin-bottom: 1.5em;
 
     .bar-title {
+        flex-direction: row;
+        justify-content: space-between;
+        display: flex;
         border-bottom: 2px solid black;
         font-weight: lighter;
         opacity: 0.5;
         font-size: 18px;
         margin-bottom: .5em;
         text-align: left;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        display: flex;
+        width: 100%;
     }
 
     .bar-24chart {
@@ -189,17 +184,13 @@
     .calculator-qs {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         width: 100vw;
+
     }
 
     .calculator-mb {
         margin-bottom: 2em;
-    }
-
-    .calculator-question {
-        width: 90%;
     }
 
     .calculator-footer {

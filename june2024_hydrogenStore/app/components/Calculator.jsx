@@ -30,7 +30,7 @@ const CalculatorQuestion = ({ question, min, max, value, setValue, desc }) => {
                     max={max}
                     value={value}
                     onChange={handleSliderChange}
-                    className="slider"
+                    style={{ width: '320px' }}
                 />
                 <div className='slider-target'>{value} {desc}</div>
             </div>
@@ -189,17 +189,10 @@ export const Calculator = () => {
                         />
                     ))}
                 </div>
-
-                <div className='bar-container-head'>
-                    <BarContainer title='COMPARATIVA - EMISIONES' a={warmeB} b={tradicionalB} footer={'Kg C02 emitidos /año'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
-                    <BarContainer title='COMPARATIVA - PRECIO' a={warmeA} b={tradicionalA} footer={'€ ahorrados / año'} flag="huela" />
-                    <PuntoDeAhorro data={dataLineChart} ahorroMensual={ahorroMensual} />
-                    {/* to do is get the numbers in the right orger */}
-                </div>
-
-
-
             </div>
+
+
+
             {/* <SaberMas /> */}
 
         </div>
