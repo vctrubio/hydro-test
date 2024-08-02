@@ -43,7 +43,7 @@ export const CalculatorChart = ({ data, ahorroMensual }) => {
                 <YAxis
                     yAxisId="left"
                     domain={[-5000, 25000]}
-                    label={{ value: 'Acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dy: 30 }}
+                    label={{ value: 'Acumulación de ahorro (€)', angle: -90, position: 'insideLeft', style: { fontSize: '18px' }, dy: 90 }}
                     tickFormatter={(value) => value === 0 ? '0' : `${(Math.round(value / 1000))}k`} // Formats the tick values as "8k" or "0"
                 />
                 <defs>
