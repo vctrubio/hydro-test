@@ -20,8 +20,10 @@
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     height: 65px;
+    width: 500px;
+    /* border: 1px solid rgb(208, 195, 195); */
 
     >* {
         align-self: center;
@@ -31,7 +33,7 @@
 .calculator-qs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 80px;
+    column-gap: 60px;
     row-gap: 20px;
     padding: 1em;
     margin: 0 1em;
@@ -117,7 +119,7 @@
     align-self: stretch;
     margin-bottom: 1.5em;
 
-    .bar-title{
+    .bar-title {
         border-bottom: 2px solid black;
         font-weight: lighter;
         opacity: 0.5;
@@ -129,14 +131,14 @@
         justify-content: space-between;
         display: flex;
     }
-    
-    .bar-24chart{
+
+    .bar-24chart {
         display: flex;
         flex-direction: column;
         flex-direction: start;
         width: 100%;
     }
-    
+
     .bar-label {
         font-size: 14px;
         margin-bottom: .5em;
@@ -250,7 +252,7 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 8px;
+    height: 4px;
     background: #ddd;
     border-radius: 5px;
 }
@@ -260,12 +262,19 @@ input[type="range"]::-webkit-slider-thumb {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #171a17;
+    background: #ffffff;
+    border: 2px solid rgb(124, 124, 124);
     cursor: pointer;
     margin-top: -6px;
     /* Aligns thumb with the track */
 }
 
-input[type="range"]:focus {
-    outline: none;
-  }
+input[type="range"]::before {
+    content: '';
+    height: 8px;
+    background: #171a17;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
