@@ -86,7 +86,7 @@
     justify-content: center;
     align-items: center;
     height: 40px;
-    width: 120px;
+    width: 90px;
     border: 1px solid rgb(187, 179, 179);
     margin-bottom: 2px;
     border-radius: 2px;
@@ -97,6 +97,8 @@
 .bar-container-head {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 1em;
     margin: auto;
     align-items: flex-start;
@@ -201,6 +203,7 @@
         flex-direction: column;
     }
 
+    
     .punto-g {
         width: 70%;
 
@@ -210,6 +213,7 @@
     }
 
     .punto-ahorro {
+        width: 450px;
         >* {
             width: 100%;
         }
@@ -228,7 +232,6 @@
     }
 
     .bar-container-head {
-        flex-direction: column;
         gap: 2em;
     }
 

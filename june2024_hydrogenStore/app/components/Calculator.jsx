@@ -191,6 +191,12 @@ export const Calculator = () => {
                 </div>
             </div>
 
+            <div className='bar-container-head'>
+                <BarContainer title='COMPARATIVA - EMISIONES' a={warmeB} b={tradicionalB} footer={'Kg C02 emitidos /año'} flag="gastos" ahorroMensual={ahorroMensual} setAhorroMensual={setAhorroMensual} />
+                <BarContainer title='COMPARATIVA - PRECIO' a={warmeA} b={tradicionalA} footer={'€ ahorrados / año'} flag="huela" />
+                <PuntoDeAhorro data={dataLineChart} ahorroMensual={ahorroMensual} />
+                {/* to do is get the numbers in the right orger */}
+            </div>
 
 
             {/* <SaberMas /> */}
